@@ -1,5 +1,5 @@
 public class VendingMachine {
     public String getStateMessage() {
-        return "";
+        return "INSERT COIN";
     }
 }
