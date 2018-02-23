@@ -26,4 +26,12 @@ public class VendingMachineTest {
 
         Assert.assertEquals(.10, coinAmount,0);
     }
+
+    @Test
+    public void whenInsertACoinDetermineTheValueBasedOffOfWeightAndDiameterAndReturnValueOfANickel() {
+        VendingMachine vendingMachine = new VendingMachine();
+        double coinAmount = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(3, 3);
+
+        Assert.assertEquals(.05, coinAmount,0);
+    }
 }
