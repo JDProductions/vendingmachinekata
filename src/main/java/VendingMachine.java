@@ -16,6 +16,10 @@ public class VendingMachine {
             coinValue = 0.10;
             return coinValue;
         }
+        else if (weight == 3 && diameter == 3) {
+            coinValue = 0.05;
+            return coinValue;
+        }
         else
             return coinValue = .01;
 
