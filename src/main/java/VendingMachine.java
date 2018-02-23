@@ -6,6 +6,7 @@ public class VendingMachine {
     private final int TWO_MILLIMETERS = 2;
     private final int THREE_GRAMS = 3;
     private final int THREE_MILLIMETERS = 3;
+    private final String IDLE_MESSAGE = "INSERT COIN";
 
     double coinValue = 0;
     double totalAmountDeposited = 0;
@@ -13,7 +14,7 @@ public class VendingMachine {
 
 
     public String getStateMessage() {
-        return "INSERT COIN";
+        return IDLE_MESSAGE;
     }
 
     public double determineCoinValueBasedOnWeightAndSizeByDiameter(int weight, int diameter) {
