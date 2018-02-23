@@ -32,4 +32,7 @@ public class VendingMachine {
         return this.coinReturnAmount;
     }
 
+    public double getTotalAmountDeposited() {
+        return 0.0;
+    }
 }

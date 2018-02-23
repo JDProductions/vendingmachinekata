@@ -43,4 +43,14 @@ public class VendingMachineTest {
 
         assertEquals(coinAmount, vendingMachine.getCoinReturnAmount());
     }
+
+    @Test
+    public void whenIInsertCoinsTheTotalDepositedShouldBeValueOfAllCoinsDeposited() {
+        VendingMachine vendingMachine = new VendingMachine();
+        double quarter = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+
+        assertEquals(.50,vendingMachine.getTotalAmountDeposited());
+
+    }
 }
