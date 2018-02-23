@@ -17,10 +17,12 @@ public class VendingMachine {
         }
         else if (weight == 2 && diameter == 2) {
             coinValue = 0.10;
+            totalAmountDeposited += coinValue;
             return coinValue;
         }
         else if (weight == 3 && diameter == 3) {
             coinValue = 0.05;
+            totalAmountDeposited += coinValue;
             return coinValue;
         }
         else

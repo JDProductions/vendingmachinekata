@@ -64,6 +64,7 @@ public class VendingMachineTest {
         double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
         double dime = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2,2);
         double nickel = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(3,3);
+        // Notice the penny is not added to the total deposited.
         double penny = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(4,4);
 
 
