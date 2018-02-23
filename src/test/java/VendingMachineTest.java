@@ -1,4 +1,3 @@
-import org.junit.Assert;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
@@ -16,7 +15,7 @@ public class VendingMachineTest {
         VendingMachine vendingMachine = new VendingMachine();
         double coinAmount = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1, 1);
 
-        Assert.assertEquals(0.25, coinAmount,0);
+        assertEquals(0.25, coinAmount,0);
     }
 
     @Test
@@ -24,7 +23,7 @@ public class VendingMachineTest {
         VendingMachine vendingMachine = new VendingMachine();
         double coinAmount = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2, 2);
 
-        Assert.assertEquals(.10, coinAmount,0);
+        assertEquals(0.10, coinAmount,0);
     }
 
     @Test
@@ -32,7 +31,7 @@ public class VendingMachineTest {
         VendingMachine vendingMachine = new VendingMachine();
         double coinAmount = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(3, 3);
 
-        Assert.assertEquals(.05, coinAmount,0);
+        assertEquals(0.05, coinAmount,0);
     }
 
     @Test
@@ -52,7 +51,7 @@ public class VendingMachineTest {
         double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
 
 
-        assertEquals(.50,vendingMachine.getTotalAmountDeposited());
+        assertEquals(0.50,vendingMachine.getTotalAmountDeposited());
 
     }
 
@@ -68,7 +67,7 @@ public class VendingMachineTest {
         double penny = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(4,4);
 
 
-        assertEquals(.65,vendingMachine.getTotalAmountDeposited());
+        assertEquals(0.65,vendingMachine.getTotalAmountDeposited());
 
     }
 }
