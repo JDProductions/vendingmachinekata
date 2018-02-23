@@ -1,6 +1,7 @@
 public class VendingMachine {
 
     double coinValue = 0;
+    double totalAmountDeposited = 0;
     double coinReturnAmount;
 
 
@@ -11,6 +12,7 @@ public class VendingMachine {
     public double determineCoinValueBasedOnWeightAndSizeByDiameter(int weight, int diameter) {
         if (weight == 1 && diameter == 1) {
             coinValue = 0.25;
+            totalAmountDeposited += coinValue;
             return  coinValue;
         }
         else if (weight == 2 && diameter == 2) {
@@ -33,6 +35,6 @@ public class VendingMachine {
     }
 
     public double getTotalAmountDeposited() {
-        return 0.0;
+        return this.totalAmountDeposited;
     }
 }

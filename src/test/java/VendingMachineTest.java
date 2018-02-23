@@ -45,10 +45,12 @@ public class VendingMachineTest {
     }
 
     @Test
-    public void whenIInsertCoinsTheTotalDepositedShouldBeValueOfAllCoinsDeposited() {
+    public void whenIInsertCoinsTheTotalDepositedShouldBeValueOfAllCoinsDepositedQuarters() {
         VendingMachine vendingMachine = new VendingMachine();
+        // I know these variable arent being used but I added them for readabiity for the Artisan.
         double quarter = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
         double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+
 
         assertEquals(.50,vendingMachine.getTotalAmountDeposited());
 
