@@ -1,5 +1,12 @@
 public class VendingMachine {
 
+    private final int ONE_GRAM = 1;
+    private final int ONE_MILLIMETER = 1;
+    private final int TWO_GRAMS = 2;
+    private final int TWO_MILLIMETERS = 2;
+    private final int THREE_GRAMS = 3;
+    private final int THREE_MILLIMETERS = 3;
+
     double coinValue = 0;
     double totalAmountDeposited = 0;
     double coinReturnAmount;
@@ -10,19 +17,19 @@ public class VendingMachine {
     }
 
     public double determineCoinValueBasedOnWeightAndSizeByDiameter(int weight, int diameter) {
-        if (weight == 1 && diameter == 1) {
+        if (weight == ONE_GRAM && diameter == ONE_MILLIMETER) {
             coinValue = 0.25;
-            totalAmountDeposited += coinValue;
+            incrementTotalAmountDepositedByCoinValue();
             return  coinValue;
         }
-        else if (weight == 2 && diameter == 2) {
+        else if (weight == TWO_GRAMS && diameter == TWO_MILLIMETERS) {
             coinValue = 0.10;
-            totalAmountDeposited += coinValue;
+            incrementTotalAmountDepositedByCoinValue();
             return coinValue;
         }
-        else if (weight == 3 && diameter == 3) {
+        else if (weight == THREE_GRAMS && diameter == THREE_MILLIMETERS) {
             coinValue = 0.05;
-            totalAmountDeposited += coinValue;
+            incrementTotalAmountDepositedByCoinValue();
             return coinValue;
         }
         else
@@ -30,6 +37,10 @@ public class VendingMachine {
             coinReturnAmount += coinValue;
             return coinValue;
 
+    }
+
+    private void incrementTotalAmountDepositedByCoinValue() {
+        totalAmountDeposited += coinValue;
     }
 
     public double getCoinReturnAmount() {
