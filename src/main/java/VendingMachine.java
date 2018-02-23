@@ -13,7 +13,7 @@ public class VendingMachine {
             return  coinValue;
         }
         else
-            return coinValue = 1;
+            return coinValue = .01;
 
     }
 }
