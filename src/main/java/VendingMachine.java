@@ -8,6 +8,12 @@ public class VendingMachine {
     }
 
     public double determineCoinValueBasedOnWeightAndSizeByDiameter(int weight, int diameter) {
-        return coinValue;
+        if (weight == 1 && diameter == 1) {
+            coinValue = 0.25;
+            return  coinValue;
+        }
+        else
+            return coinValue = 1;
+
     }
 }
