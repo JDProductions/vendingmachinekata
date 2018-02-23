@@ -1,6 +1,7 @@
 public class VendingMachine {
 
     double coinValue = 0;
+    double coinReturnAmount;
 
 
     public String getStateMessage() {
@@ -21,11 +22,14 @@ public class VendingMachine {
             return coinValue;
         }
         else
-            return coinValue = .01;
+            coinValue = .01;
+            coinReturnAmount += coinValue;
+            return coinValue;
 
     }
 
     public double getCoinReturnAmount() {
-        return 0.0;
+        return this.coinReturnAmount;
     }
+
 }
