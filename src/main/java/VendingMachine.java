@@ -18,22 +18,22 @@ public class VendingMachine {
 
     public double determineCoinValueBasedOnWeightAndSizeByDiameter(int weight, int diameter) {
         if (weight == ONE_GRAM && diameter == ONE_MILLIMETER) {
-            coinValue = 0.25;
+            setCoinValue(0.25);
             incrementTotalAmountDepositedByCoinValue();
             return  coinValue;
         }
         else if (weight == TWO_GRAMS && diameter == TWO_MILLIMETERS) {
-            coinValue = 0.10;
+            setCoinValue(0.10);
             incrementTotalAmountDepositedByCoinValue();
             return coinValue;
         }
         else if (weight == THREE_GRAMS && diameter == THREE_MILLIMETERS) {
-            coinValue = 0.05;
+            setCoinValue(0.05);
             incrementTotalAmountDepositedByCoinValue();
             return coinValue;
         }
         else
-            coinValue = .01;
+            setCoinValue(0.01);
             coinReturnAmount += coinValue;
             return coinValue;
 
@@ -50,4 +50,9 @@ public class VendingMachine {
     public double getTotalAmountDeposited() {
         return this.totalAmountDeposited;
     }
+
+    public void setCoinValue(double coinValue) {
+        this.coinValue = coinValue;
+    }
+
 }
