@@ -24,4 +24,8 @@ public class VendingMachine {
             return coinValue = .01;
 
     }
+
+    public double getCoinReturnAmount() {
+        return 0.0;
+    }
 }

@@ -34,4 +34,13 @@ public class VendingMachineTest {
 
         Assert.assertEquals(.05, coinAmount,0);
     }
+
+    @Test
+    public void whenIInsertAPennyTheCoinReturnShouldReturnTheValueOfAPennyWhichWasInserted() {
+        VendingMachine vendingMachine = new VendingMachine();
+        double coinAmount = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(4,4);
+        vendingMachine.getCoinReturnAmount();
+
+        assertEquals(coinAmount, vendingMachine.getCoinReturnAmount());
+    }
 }
