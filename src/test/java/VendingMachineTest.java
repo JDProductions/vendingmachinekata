@@ -209,4 +209,17 @@ public class VendingMachineTest {
     }
 
 
+    @Test
+    public void whenIInsertMoreMoneyThenWhatsNeededForChipsIShouldBeReturnedChange() {
+        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        double quarter3 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        double quarter4 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+
+        vendingMachine.pressedButton("Chips");
+
+        assertEquals(.5, vendingMachine.getCoinReturnAmount());
+    }
+
+
 }
