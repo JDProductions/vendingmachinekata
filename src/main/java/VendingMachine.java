@@ -58,7 +58,7 @@ public class VendingMachine {
                 else if (totalAmountDeposited < chipsPrice) {
                     setStateMessage("PRICE " + Double.toString(chipsPrice));
                 }
-                if (doWeHaveChipsInStock() && totalAmountDeposited >= chipsPrice) {
+                if (doWeHaveItemInStock("Chips") && totalAmountDeposited >= chipsPrice) {
                     chipsInStock -= 1;
 
                     if (calculateChange(chipsPrice)) {
@@ -74,9 +74,12 @@ public class VendingMachine {
     }
 
 
-    public boolean doWeHaveChipsInStock() {
-        if (chipsInStock > 0) {
-            return true;
+    public boolean doWeHaveItemInStock(String itemName) {
+        if (itemName.equals("Chips")) {
+            if (chipsInStock > 0)
+            {
+                return true;
+            }
         }
         return false;
     }
