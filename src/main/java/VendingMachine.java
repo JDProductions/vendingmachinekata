@@ -7,6 +7,13 @@ public class VendingMachine {
     private final int THREE_GRAMS = 3;
     private final int THREE_MILLIMETERS = 3;
 
+    private final int chipsItemID = 1;
+
+    private int chipsInStock = 5;
+    private double chipsPrice = 0.65;
+    private boolean wasChipButtonPressed = false;
+
+
     private String stateMessage = "INSERT COIN";
 
     double coinValue = 0;
@@ -15,7 +22,11 @@ public class VendingMachine {
 
 
     public String getStateMessage() {
-        if (totalAmountDeposited > 0) {
+        if (wasChipButtonPressed) {
+            return stateMessage;
+        }
+
+        else if (totalAmountDeposited > 0) {
             return Double.toString(totalAmountDeposited);
         }
         return stateMessage;
@@ -66,6 +77,28 @@ public class VendingMachine {
 
 
     public void pressChipButton() {
+        setWasChipButtonPressed(true);
+        dispense(chipsItemID);
+    }
 
+    public void dispense(int itemID) {
+        switch (itemID) {
+            case chipsItemID:
+                if (doWeHaveChipsInStock() && totalAmountDeposited >= chipsPrice) {
+                    setStateMessage("THANK YOU");
+                }
+                break;
+        }
+    }
+
+    public boolean doWeHaveChipsInStock() {
+        if (chipsInStock > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public void setWasChipButtonPressed(boolean wasChipButtonPressed) {
+        this.wasChipButtonPressed = wasChipButtonPressed;
     }
 }
