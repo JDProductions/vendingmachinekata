@@ -14,6 +14,9 @@ public class VendingMachine {
 
 
     public String getStateMessage() {
+        if (totalAmountDeposited > 0) {
+            return Double.toString(totalAmountDeposited);
+        }
         return IDLE_MESSAGE;
     }
 
