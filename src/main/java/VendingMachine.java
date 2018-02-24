@@ -85,6 +85,7 @@ public class VendingMachine {
         switch (itemID) {
             case chipsItemID:
                 if (doWeHaveChipsInStock() && totalAmountDeposited >= chipsPrice) {
+                    chipsInStock -= 1;
                     setStateMessage("THANK YOU");
                 }
                 break;
