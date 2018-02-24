@@ -221,5 +221,18 @@ public class VendingMachineTest {
         assertEquals(.5, vendingMachine.getCoinReturnAmount());
     }
 
+    @Test
+    public void whenIInsertMoreMoneyThenWhatsNeededForColaIShouldBeReturnedChange() {
+        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        double quarter3 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        double quarter4 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        double quarter5 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+
+        vendingMachine.pressedButton("Cola");
+
+        assertEquals(.25, vendingMachine.getCoinReturnAmount());
+    }
+
 
 }
