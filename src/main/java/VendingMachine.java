@@ -6,7 +6,8 @@ public class VendingMachine {
     private final int TWO_MILLIMETERS = 2;
     private final int THREE_GRAMS = 3;
     private final int THREE_MILLIMETERS = 3;
-    private final String IDLE_MESSAGE = "INSERT COIN";
+
+    private String stateMessage = "INSERT COIN";
 
     double coinValue = 0;
     double totalAmountDeposited = 0;
@@ -17,7 +18,7 @@ public class VendingMachine {
         if (totalAmountDeposited > 0) {
             return Double.toString(totalAmountDeposited);
         }
-        return IDLE_MESSAGE;
+        return stateMessage;
     }
 
     public double determineCoinValueBasedOnWeightAndSizeByDiameter(int weight, int diameter) {
@@ -58,5 +59,10 @@ public class VendingMachine {
     public void setCoinValue(double coinValue) {
         this.coinValue = coinValue;
     }
+
+    public void setStateMessage(String stateMessage) {
+        this.stateMessage = stateMessage;
+    }
+
 
 }
