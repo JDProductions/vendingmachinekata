@@ -99,4 +99,15 @@ public class VendingMachineTest {
         assertEquals(4, vendingMachine.getChipsInStock());
     }
 
+    @Test
+    public void whenIInsertTheExactAmountNeededForChipsAndPressChipButtonTheTotalAmountDepositedShouldBeZero() {
+        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+
+        vendingMachine.pressChipButton();
+
+        // There are 5 bags of chips in stock, I am now expecting 4 bags to be in stock meaning one of the bags has been dispensed.
+        assertEquals(0.0, vendingMachine.getTotalAmountDeposited());
+    }
+
 }
