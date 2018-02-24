@@ -1,5 +1,4 @@
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 
 public class VendingMachine {
 
@@ -232,5 +231,9 @@ public class VendingMachine {
 
     public void makeChange(double itemPrice) {
         this.totalAmountDeposited = BigDecimal.valueOf(this.totalAmountDeposited).subtract(BigDecimal.valueOf(itemPrice)).doubleValue();
+    }
+
+    public void setChipsInStock(int numberInStock) {
+
     }
 }
