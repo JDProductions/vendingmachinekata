@@ -69,6 +69,9 @@ public class VendingMachine {
             wasCandyButtonPressed = true;
             dispense(candyItemID);
         }
+        else {
+            coinReturnAmount += this.totalAmountDeposited;
+        }
     }
 
 
