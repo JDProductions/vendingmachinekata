@@ -101,4 +101,8 @@ public class VendingMachine {
     public void setWasChipButtonPressed(boolean wasChipButtonPressed) {
         this.wasChipButtonPressed = wasChipButtonPressed;
     }
+
+    public int getChipsInStock() {
+        return chipsInStock;
+    }
 }
