@@ -27,6 +27,8 @@ public class VendingMachine {
     private int candyInStock = 5;
     private boolean wasCandyButtonPressed = false;
 
+    private boolean wasReturnButtonPressed = false;
+
 
 
     private String stateMessage = "INSERT COIN";
@@ -71,6 +73,8 @@ public class VendingMachine {
         }
         else {
             coinReturnAmount += this.totalAmountDeposited;
+            wasReturnButtonPressed = true;
+            setStateMessage("INSERT COIN");
         }
     }
 
@@ -195,6 +199,10 @@ public class VendingMachine {
         }
 
         else if (wasCandyButtonPressed) {
+            return stateMessage;
+        }
+
+        else if (wasReturnButtonPressed) {
             return stateMessage;
         }
         else if (totalAmountDeposited > 0) {
