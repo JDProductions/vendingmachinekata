@@ -81,7 +81,7 @@ public class VendingMachineTest {
         double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
         double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
 
-        vendingMachine.pressChipButton();
+        vendingMachine.pressedButton("Chips");
 
 
         assertEquals("THANK YOU",vendingMachine.getStateMessage());
@@ -93,7 +93,7 @@ public class VendingMachineTest {
         double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
         double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
 
-        vendingMachine.pressChipButton();
+        vendingMachine.pressedButton("Chips");
 
         // There are 5 bags of chips in stock, I am now expecting 4 bags to be in stock meaning one of the bags has been dispensed.
         assertEquals(4, vendingMachine.getChipsInStock());
@@ -104,7 +104,7 @@ public class VendingMachineTest {
         double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
         double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
 
-        vendingMachine.pressChipButton();
+        vendingMachine.pressedButton("Chips");
 
         // There are 5 bags of chips in stock, I am now expecting 4 bags to be in stock meaning one of the bags has been dispensed.
         assertEquals(0.0, vendingMachine.getTotalAmountDeposited());
@@ -115,8 +115,8 @@ public class VendingMachineTest {
         double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
         double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
 
-        vendingMachine.pressChipButton();
-        vendingMachine.pressChipButton();
+        vendingMachine.pressedButton("Chips");
+        vendingMachine.pressedButton("Chips");
 
         assertEquals("INSERT COIN", vendingMachine.getStateMessage());
 
@@ -126,7 +126,7 @@ public class VendingMachineTest {
     public void whenIPressTheChipButtonAndIDontHaveEnoughMoneyDepositedTheDisplayMessageWillReadPRICEAndTheCostOfTheChips() {
         double quarter = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
 
-        vendingMachine.pressChipButton();
+        vendingMachine.pressedButton("Chips");
 
         assertEquals("PRICE " + "0.5", vendingMachine.getStateMessage());
 

@@ -40,9 +40,12 @@ public class VendingMachine {
 
     }
 
-    public void pressChipButton() {
-        setWasChipButtonPressed(true);
-        dispense(chipsItemID);
+    public void pressedButton(String item) {
+        if (item.equals("Chips")) {
+            setWasChipButtonPressed(true);
+            dispense(chipsItemID);
+
+        }
     }
 
 
