@@ -13,6 +13,15 @@ public class VendingMachineTest {
     }
 
     @Test
+    public void whenIInsertAValidCoinTheDisplayMessageShouldReadTheTotalDepositedAmount() {
+        double quarter = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1, 1);
+        double dime = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2, 2);
+
+
+        assertEquals("0.35",vendingMachine.getStateMessage());
+    }
+
+    @Test
     public void whenInsertACoinDetermineTheValueBasedOffOfWeightAndDiameterAndReturnValueOfAQuarter() {
         double coinAmount = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1, 1);
 
