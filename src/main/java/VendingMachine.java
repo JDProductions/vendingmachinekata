@@ -80,8 +80,11 @@ public class VendingMachine {
                 }
                 if (doWeHaveItemInStock("Chips") && totalAmountDeposited >= chipsPrice) {
                     chipsInStock -= 1;
-
-                    if (calculateChange(chipsPrice)) {
+                    if (totalAmountDeposited > chipsPrice) {
+                        totalAmountDeposited = totalAmountDeposited - chipsPrice;
+                        coinReturnAmount += totalAmountDeposited;
+                    }
+                    else if (calculateChange(chipsPrice)) {
                         setTotalAmountDeposited(0.0);
                         setStateMessage("THANK YOU");
                         transactionSuccessful = true;
