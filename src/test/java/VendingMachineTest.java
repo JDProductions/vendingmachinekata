@@ -246,5 +246,18 @@ public class VendingMachineTest {
         assertEquals(.05, vendingMachine.getCoinReturnAmount());
     }
 
+    @Test
+    public void whenIInsertMoneyAndPushReturnCoinButtonIShouldGetAllOfMyMoneyBack() {
+        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        double dime1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2,2);
+
+        vendingMachine.pressedButton("Return Coin");
+
+        assertEquals(.6, vendingMachine.getCoinReturnAmount());
+    }
+
+
+
 
 }
