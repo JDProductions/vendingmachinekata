@@ -1,3 +1,6 @@
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+
 public class VendingMachine {
 
     private final int ONE_GRAM = 1;
@@ -115,7 +118,11 @@ public class VendingMachine {
                 }
                 if (doWeHaveItemInStock("Candy") && totalAmountDeposited >= candyPrice) {
                     candyInStock -= 1;
-                    if (calculateChange(candyPrice)) {
+                    if (totalAmountDeposited > candyPrice) {
+                        makeChange(candyPrice);
+                        incrementCoinReturnAmount();
+                    }
+                    else if (calculateChange(candyPrice)) {
                         setTotalAmountDeposited(0.0);
                         setStateMessage("THANK YOU");
                     }
@@ -213,6 +220,6 @@ public class VendingMachine {
     }
 
     public void makeChange(double itemPrice) {
-        this.totalAmountDeposited -= itemPrice;
+        this.totalAmountDeposited = BigDecimal.valueOf(this.totalAmountDeposited).subtract(BigDecimal.valueOf(itemPrice)).doubleValue();
     }
 }
