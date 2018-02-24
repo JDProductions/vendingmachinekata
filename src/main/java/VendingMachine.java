@@ -78,7 +78,8 @@ public class VendingMachine {
                 break;
 
             case colaItemID:
-                if (doWeHaveItemInStock("Cola") && totalAmountDeposited >= chipsPrice) {
+                if (doWeHaveItemInStock("Cola") && totalAmountDeposited >= colaPrice) {
+                    colaInStock -= 1;
                     if (calculateChange(colaPrice)) {
                         setTotalAmountDeposited(0.0);
                         setStateMessage("THANK YOU");
