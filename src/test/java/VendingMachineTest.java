@@ -278,6 +278,18 @@ public class VendingMachineTest {
         assertEquals("SOLD OUT", vendingMachine.getStateMessage());
     }
 
+    @Test
+    public void whenIInsertMoneyAndPushTheChipsButtonButChipsAreSoldOut2xOnTheSecondPressIShouldSeeTheAmountIHaveDeposited() {
+        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+
+        vendingMachine.setChipsInStock(0);
+        vendingMachine.pressedButton("Chips");
+        vendingMachine.pressedButton("Chips");
+
+        assertEquals("0.5", vendingMachine.getStateMessage());
+    }
+
 
 
 
