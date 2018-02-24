@@ -164,6 +164,7 @@ public class VendingMachine {
             if (colaInStock > 0) {
                 return true;
             }
+            setStateMessage("SOLD OUT");
         }
         else if (itemName.equals("Candy")) {
             if (candyInStock > 0) {
@@ -250,6 +251,6 @@ public class VendingMachine {
     }
 
     public void setColaInStock(int numberInStock) {
-
+        this.colaInStock = numberInStock;
     }
 }
