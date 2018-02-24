@@ -98,7 +98,11 @@ public class VendingMachine {
             }
                 if (doWeHaveItemInStock("Cola") && totalAmountDeposited >= colaPrice) {
                     colaInStock -= 1;
-                    if (calculateChange(colaPrice)) {
+                    if (totalAmountDeposited > colaPrice) {
+                        makeChange(colaPrice);
+                        incrementCoinReturnAmount();
+                    }
+                    else if (calculateChange(colaPrice)) {
                         setTotalAmountDeposited(0.0);
                         setStateMessage("THANK YOU");
                     }
