@@ -122,4 +122,14 @@ public class VendingMachineTest {
 
     }
 
+    @Test
+    public void whenIPressTheChipButtonAndIDontHaveEnoughMoneyDepositedTheDisplayMessageWillReadPRICEAndTheCostOfTheChips() {
+        double quarter = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+
+        vendingMachine.pressChipButton();
+
+        assertEquals("PRICE " + "0.5", vendingMachine.getStateMessage());
+
+    }
+
 }
