@@ -19,6 +19,10 @@ public class VendingMachine {
     private int colaInStock = 5;
     private boolean wasColaButtonPressed = false;
 
+    private final double candyPrice = 0.65;
+    private final int candyItemID = 3;
+    private int candyInStock = 5;
+
 
 
     private String stateMessage = "INSERT COIN";
@@ -56,6 +60,10 @@ public class VendingMachine {
             wasColaButtonPressed = true;
             dispense(colaItemID);
         }
+
+        else if (item.equals("Candy")) {
+            dispense(candyItemID);
+        }
     }
 
 
@@ -90,6 +98,15 @@ public class VendingMachine {
                         setStateMessage("THANK YOU");
                     }
                 }
+                break;
+
+            case candyItemID:
+                if (doWeHaveItemInStock("Candy") && totalAmountDeposited >= candyPrice) {
+                    if (calculateChange(candyPrice)) {
+                        setTotalAmountDeposited(0.0);
+                        setStateMessage("THANK YOU");
+                    }
+                }
         }
     }
 
@@ -103,6 +120,11 @@ public class VendingMachine {
         }
         else if (itemName.equals("Cola")) {
             if (colaInStock > 0) {
+                return true;
+            }
+        }
+        else if (itemName.equals("Candy")) {
+            if (candyInStock > 0) {
                 return true;
             }
         }
