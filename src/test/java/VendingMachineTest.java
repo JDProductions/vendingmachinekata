@@ -75,4 +75,18 @@ public class VendingMachineTest {
         assertEquals(0.65,vendingMachine.getTotalAmountDeposited());
 
     }
+
+    @Test
+    public void whenIInsertEnoughMoneyForChipsIShouldDispensedChipsAndTheDisplayMessageShouldReadTHANKYOU(){
+        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        double dime = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2,2);
+        double nickel = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(3,3);
+
+        vendingMachine.pressChipButton();
+
+
+        assertEquals("THANK YOU",vendingMachine.getStateMessage());
+
+    }
 }

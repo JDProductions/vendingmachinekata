@@ -65,4 +65,7 @@ public class VendingMachine {
     }
 
 
+    public void pressChipButton() {
+
+    }
 }
