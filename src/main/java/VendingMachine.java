@@ -50,6 +50,9 @@ public class VendingMachine {
                 if (doWeHaveChipsInStock() && totalAmountDeposited >= chipsPrice) {
                     chipsInStock -= 1;
                     setStateMessage("THANK YOU");
+                    if (totalAmountDeposited == chipsPrice) {
+                        totalAmountDeposited = 0;
+                    }
                 }
                 break;
         }
