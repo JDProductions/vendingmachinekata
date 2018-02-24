@@ -186,4 +186,8 @@ public class VendingMachine {
     public int getColasInStock() {
         return this.colaInStock;
     }
+
+    public int getCandyInStock() {
+        return candyInStock;
+    }
 }

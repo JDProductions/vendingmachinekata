@@ -185,5 +185,18 @@ public class VendingMachineTest {
 
     }
 
+    @Test
+    public void whenIInsertEnoughMoneyForCandyAndPressCandyButtonTheCandyShouldBeDispensed() {
+        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        double dime = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2,2);
+        double nickel = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(3,3);
+
+        vendingMachine.pressedButton("Candy");
+
+        // There are 5 pieces of candy in stock, I am now expecting 4 pieces of candy to be in stock meaning one of the pieces of candy has been dispensed.
+        assertEquals(4, vendingMachine.getCandyInStock());
+    }
+
 
 }
