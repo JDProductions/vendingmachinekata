@@ -21,38 +21,56 @@ public class VendingMachine {
     double coinReturnAmount;
 
 
-    public String getStateMessage() {
-        if (wasChipButtonPressed) {
-            return stateMessage;
-        }
-
-        else if (totalAmountDeposited > 0) {
-            return Double.toString(totalAmountDeposited);
-        }
-        return stateMessage;
-    }
-
     public double determineCoinValueBasedOnWeightAndSizeByDiameter(int weight, int diameter) {
         if (weight == ONE_GRAM && diameter == ONE_MILLIMETER) {
             setCoinValue(0.25);
             incrementTotalAmountDepositedByCoinValue();
-            return  coinValue;
-        }
-        else if (weight == TWO_GRAMS && diameter == TWO_MILLIMETERS) {
+            return coinValue;
+        } else if (weight == TWO_GRAMS && diameter == TWO_MILLIMETERS) {
             setCoinValue(0.10);
             incrementTotalAmountDepositedByCoinValue();
             return coinValue;
-        }
-        else if (weight == THREE_GRAMS && diameter == THREE_MILLIMETERS) {
+        } else if (weight == THREE_GRAMS && diameter == THREE_MILLIMETERS) {
             setCoinValue(0.05);
             incrementTotalAmountDepositedByCoinValue();
             return coinValue;
-        }
-        else
+        } else
             setCoinValue(0.01);
-            coinReturnAmount += coinValue;
-            return coinValue;
+        coinReturnAmount += coinValue;
+        return coinValue;
 
+    }
+
+    public void pressChipButton() {
+        setWasChipButtonPressed(true);
+        dispense(chipsItemID);
+    }
+
+    public void dispense(int itemID) {
+        switch (itemID) {
+            case chipsItemID:
+                if (doWeHaveChipsInStock() && totalAmountDeposited >= chipsPrice) {
+                    chipsInStock -= 1;
+                    setStateMessage("THANK YOU");
+                }
+                break;
+        }
+    }
+
+
+    public boolean doWeHaveChipsInStock() {
+        if (chipsInStock > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public void setWasChipButtonPressed(boolean wasChipButtonPressed) {
+        this.wasChipButtonPressed = wasChipButtonPressed;
+    }
+
+    public int getChipsInStock() {
+        return chipsInStock;
     }
 
     private void incrementTotalAmountDepositedByCoinValue() {
@@ -75,35 +93,12 @@ public class VendingMachine {
         this.stateMessage = stateMessage;
     }
 
-
-    public void pressChipButton() {
-        setWasChipButtonPressed(true);
-        dispense(chipsItemID);
-    }
-
-    public void dispense(int itemID) {
-        switch (itemID) {
-            case chipsItemID:
-                if (doWeHaveChipsInStock() && totalAmountDeposited >= chipsPrice) {
-                    chipsInStock -= 1;
-                    setStateMessage("THANK YOU");
-                }
-                break;
+    public String getStateMessage() {
+        if (wasChipButtonPressed) {
+            return stateMessage;
+        } else if (totalAmountDeposited > 0) {
+            return Double.toString(totalAmountDeposited);
         }
-    }
-
-    public boolean doWeHaveChipsInStock() {
-        if (chipsInStock > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public void setWasChipButtonPressed(boolean wasChipButtonPressed) {
-        this.wasChipButtonPressed = wasChipButtonPressed;
-    }
-
-    public int getChipsInStock() {
-        return chipsInStock;
+        return stateMessage;
     }
 }
