@@ -52,6 +52,9 @@ public class VendingMachine {
                 if (transactionSuccessful) {
                     setStateMessage("INSERT COIN");
                 }
+                else if (totalAmountDeposited < chipsPrice) {
+                    setStateMessage("PRICE " + Double.toString(chipsPrice));
+                }
                 if (doWeHaveChipsInStock() && totalAmountDeposited >= chipsPrice) {
                     chipsInStock -= 1;
 
