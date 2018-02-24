@@ -257,6 +257,16 @@ public class VendingMachineTest {
         assertEquals(.6, vendingMachine.getCoinReturnAmount());
     }
 
+    @Test
+    public void whenIInsertMoneyAndPushReturnCoinButtonTheDisplayMessageShouldSayINSERTCOIN() {
+        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+
+        vendingMachine.pressedButton("Return Coin");
+
+        assertEquals("INSERT COIN", vendingMachine.getStateMessage());
+    }
+
 
 
 
