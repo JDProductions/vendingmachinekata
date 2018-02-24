@@ -28,6 +28,8 @@ public class VendingMachine {
 
     private boolean wasReturnButtonPressed = false;
 
+    int soldOutButtonCounter = 0;
+
 
 
     private String stateMessage = "INSERT COIN";
@@ -147,7 +149,16 @@ public class VendingMachine {
             {
                 return true;
             }
-            setStateMessage("SOLD OUT");
+            else if (soldOutButtonCounter == 0) {
+                setStateMessage("SOLD OUT");
+                soldOutButtonCounter++;
+            }
+            else {
+                setStateMessage(Double.toString(this.totalAmountDeposited));
+                soldOutButtonCounter = 0;
+            }
+
+
         }
         else if (itemName.equals("Cola")) {
             if (colaInStock > 0) {
