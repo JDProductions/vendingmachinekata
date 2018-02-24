@@ -14,8 +14,8 @@ public class VendingMachineTest {
 
     @Test
     public void whenIInsertAValidCoinTheDisplayMessageShouldReadTheTotalDepositedAmount() {
-        double quarter = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1, 1);
-        double dime = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2, 2);
+        DEPOSIT_QUARTER();
+        DEPOSIT_DIME();
 
 
         assertEquals("0.35",vendingMachine.getStateMessage());
@@ -23,38 +23,38 @@ public class VendingMachineTest {
 
     @Test
     public void whenInsertACoinDetermineTheValueBasedOffOfWeightAndDiameterAndReturnValueOfAQuarter() {
-        double coinAmount = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1, 1);
+        double coinAmount = DEPOSIT_QUARTER();
 
         assertEquals(0.25, coinAmount,0);
     }
 
     @Test
     public void whenInsertACoinDetermineTheValueBasedOffOfWeightAndDiameterAndReturnValueOfADime() {
-        double coinAmount = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2, 2);
+        double coinAmount = DEPOSIT_DIME();
 
         assertEquals(0.10, coinAmount,0);
     }
 
     @Test
     public void whenInsertACoinDetermineTheValueBasedOffOfWeightAndDiameterAndReturnValueOfANickel() {
-        double coinAmount = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(3, 3);
+        double coinAmount = DEPOSIT_NICKEL();
 
         assertEquals(0.05, coinAmount,0);
     }
 
     @Test
     public void whenIInsertAPennyTheCoinReturnShouldReturnTheValueOfAPennyWhichWasInserted() {
-        double coinAmount = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(4,4);
+        DEPOSIT_PENNY();
         vendingMachine.getCoinReturnAmount();
 
-        assertEquals(coinAmount, vendingMachine.getCoinReturnAmount());
+        assertEquals(0.01, vendingMachine.getCoinReturnAmount());
     }
 
     @Test
     public void whenIInsertCoinsTheTotalDepositedShouldBeValueOfAllCoinsDepositedQuarters() {
         // I know these variable aren't being used but I added them for readability for the Artisan.
-        double quarter = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
 
 
         assertEquals(0.50,vendingMachine.getTotalAmountDeposited());
@@ -64,22 +64,26 @@ public class VendingMachineTest {
     @Test
     public void whenIInsertCoinsTheTotalDepositedShouldBeValueOfAllCoinsDeposited() {
         // I know these variable aren't being used but I added them for readability for the Artisan.
-        double quarter = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double dime = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2,2);
-        double nickel = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(3,3);
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_DIME();
+        DEPOSIT_NICKEL();
         // Notice the penny is not added to the total deposited.
-        double penny = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(4,4);
+        DEPOSIT_PENNY();
 
 
         assertEquals(0.65,vendingMachine.getTotalAmountDeposited());
 
     }
 
+    private double DEPOSIT_PENNY() {
+        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(4,4);
+    }
+
     @Test
     public void whenIInsertEnoughMoneyForChipsIShouldDispensedChipsAndTheDisplayMessageShouldReadTHANKYOU(){
-        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
 
         vendingMachine.pressedButton("Chips");
 
@@ -90,8 +94,8 @@ public class VendingMachineTest {
 
     @Test
     public void whenIInsertEnoughMoneyForChipsAndPressChipButtonTheChipsShouldBeDispensed() {
-        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
 
         vendingMachine.pressedButton("Chips");
 
@@ -101,8 +105,8 @@ public class VendingMachineTest {
 
     @Test
     public void whenIInsertTheExactAmountNeededForChipsAndPressChipButtonTheTotalAmountDepositedShouldBeZero() {
-        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
 
         vendingMachine.pressedButton("Chips");
 
@@ -112,8 +116,8 @@ public class VendingMachineTest {
 
     @Test
     public void afterASuccessfulTransactionBuyingChipsWhenIPressTheChipButtonAgainIShouldSeeTheDisplayMessageAsINSERTCOIN() {
-        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
 
         vendingMachine.pressedButton("Chips");
         vendingMachine.pressedButton("Chips");
@@ -124,7 +128,7 @@ public class VendingMachineTest {
 
     @Test
     public void whenIPressTheChipButtonAndIDontHaveEnoughMoneyDepositedTheDisplayMessageWillReadPRICEAndTheCostOfTheChips() {
-        double quarter = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        DEPOSIT_QUARTER();
 
         vendingMachine.pressedButton("Chips");
 
@@ -134,10 +138,10 @@ public class VendingMachineTest {
 
     @Test
     public void whenIInsertEnoughMoneyForColaIShouldDispensedColaAndTheDisplayMessageShouldReadTHANKYOU(){
-        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter3 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter4 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
 
         vendingMachine.pressedButton("Cola");
 
@@ -148,10 +152,10 @@ public class VendingMachineTest {
 
     @Test
     public void whenIInsertEnoughMoneyForColaAndPressColaButtonTheColaShouldBeDispensed() {
-        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter3 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter4 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
 
         vendingMachine.pressedButton("Cola");
 
@@ -161,9 +165,9 @@ public class VendingMachineTest {
 
     @Test
     public void whenIPressTheColaButtonAndIDontHaveEnoughMoneyDepositedTheDisplayMessageWillReadPRICEAndTheCostOfTheCola() {
-        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter3 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
 
         vendingMachine.pressedButton("Cola");
 
@@ -173,10 +177,10 @@ public class VendingMachineTest {
 
     @Test
     public void whenIInsertEnoughMoneyForCandyIShouldDispensedCandyAndTheDisplayMessageShouldReadTHANKYOU(){
-        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double dime = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2,2);
-        double nickel = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(3,3);
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_DIME();
+        DEPOSIT_NICKEL();
 
         vendingMachine.pressedButton("Candy");
 
@@ -187,10 +191,10 @@ public class VendingMachineTest {
 
     @Test
     public void whenIInsertEnoughMoneyForCandyAndPressCandyButtonTheCandyShouldBeDispensed() {
-        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double dime = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2,2);
-        double nickel = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(3,3);
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_DIME();
+        DEPOSIT_NICKEL();
 
         vendingMachine.pressedButton("Candy");
 
@@ -198,10 +202,14 @@ public class VendingMachineTest {
         assertEquals(4, vendingMachine.getCandyInStock());
     }
 
+    private double DEPOSIT_NICKEL() {
+        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(3,3);
+    }
+
     @Test
     public void whenIPressTheCandyButtonAndIDontHaveEnoughMoneyDepositedTheDisplayMessageWillReadPRICEAndTheCostOfTheCandy() {
-        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
 
         vendingMachine.pressedButton("Candy");
 
@@ -211,10 +219,10 @@ public class VendingMachineTest {
 
     @Test
     public void whenIInsertMoreMoneyThenWhatsNeededForChipsIShouldBeReturnedChange() {
-        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter3 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter4 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
 
         vendingMachine.pressedButton("Chips");
 
@@ -223,11 +231,11 @@ public class VendingMachineTest {
 
     @Test
     public void whenIInsertMoreMoneyThenWhatsNeededForColaIShouldBeReturnedChange() {
-        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter3 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter4 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter5 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
 
         vendingMachine.pressedButton("Cola");
 
@@ -236,10 +244,10 @@ public class VendingMachineTest {
 
     @Test
     public void whenIInsertMoreMoneyThenWhatsNeededForCandyIShouldBeReturnedChange() {
-        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double dime1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2,2);
-        double dime2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2,2);
+         DEPOSIT_QUARTER();
+         DEPOSIT_QUARTER();
+         DEPOSIT_DIME();
+         DEPOSIT_DIME();
 
         vendingMachine.pressedButton("Candy");
 
@@ -248,19 +256,23 @@ public class VendingMachineTest {
 
     @Test
     public void whenIInsertMoneyAndPushReturnCoinButtonIShouldGetAllOfMyMoneyBack() {
-        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double dime1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2,2);
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_DIME();
 
         vendingMachine.pressedButton("Return Coin");
 
         assertEquals(.6, vendingMachine.getCoinReturnAmount());
     }
 
+    private double DEPOSIT_DIME() {
+        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2,2);
+    }
+
     @Test
     public void whenIInsertMoneyAndPushReturnCoinButtonTheDisplayMessageShouldSayINSERTCOIN() {
-        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
 
         vendingMachine.pressedButton("Return Coin");
 
@@ -269,8 +281,8 @@ public class VendingMachineTest {
 
     @Test
     public void whenIInsertMoneyAndPushTheChipsButtonButChipsAreSoldOutTheDisplayMessageShouldReadSOLDOUT() {
-        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
 
         vendingMachine.setChipsInStock(0);
         vendingMachine.pressedButton("Chips");
@@ -280,8 +292,8 @@ public class VendingMachineTest {
 
     @Test
     public void whenIInsertMoneyAndPushTheChipsButtonButChipsAreSoldOut2xOnTheSecondPressIShouldSeeTheAmountIHaveDeposited() {
-        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
 
         vendingMachine.setChipsInStock(0);
         vendingMachine.pressedButton("Chips");
@@ -292,10 +304,10 @@ public class VendingMachineTest {
 
     @Test
     public void whenIInsertMoneyAndPushTheColaButtonButColaAreSoldOutTheDisplayMessageShouldReadSOLDOUT() {
-        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter3 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-        double quarter4 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
 
         vendingMachine.setColaInStock(0);
         vendingMachine.pressedButton("Cola");
@@ -303,6 +315,9 @@ public class VendingMachineTest {
         assertEquals("SOLD OUT", vendingMachine.getStateMessage());
     }
 
+    private double DEPOSIT_QUARTER() {
+        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+    }
 
 
 }
