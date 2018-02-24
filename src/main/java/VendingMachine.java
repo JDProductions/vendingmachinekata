@@ -10,7 +10,7 @@ public class VendingMachine {
     private final int chipsItemID = 1;
 
     private int chipsInStock = 5;
-    private double chipsPrice = 0.65;
+    private double chipsPrice = 0.50;
     private boolean wasChipButtonPressed = false;
 
 
