@@ -102,6 +102,7 @@ public class VendingMachine {
 
             case candyItemID:
                 if (doWeHaveItemInStock("Candy") && totalAmountDeposited >= candyPrice) {
+                    candyInStock -= 1;
                     if (calculateChange(candyPrice)) {
                         setTotalAmountDeposited(0.0);
                         setStateMessage("THANK YOU");
