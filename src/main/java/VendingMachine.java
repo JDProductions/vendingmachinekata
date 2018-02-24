@@ -44,14 +44,15 @@ public class VendingMachine {
         dispense(chipsItemID);
     }
 
+
     public void dispense(int itemID) {
         switch (itemID) {
             case chipsItemID:
                 if (doWeHaveChipsInStock() && totalAmountDeposited >= chipsPrice) {
                     chipsInStock -= 1;
                     setStateMessage("THANK YOU");
-                    if (totalAmountDeposited == chipsPrice) {
-                        totalAmountDeposited = 0;
+                    if (calculateChange(chipsPrice)) {
+                        setTotalAmountDeposited(0.0);
                     }
                 }
                 break;
@@ -101,5 +102,16 @@ public class VendingMachine {
             return Double.toString(totalAmountDeposited);
         }
         return stateMessage;
+    }
+
+    public void setTotalAmountDeposited(double totalAmountDeposited) {
+        this.totalAmountDeposited = totalAmountDeposited;
+    }
+
+    public boolean calculateChange(double itemPrice) {
+        if (this.totalAmountDeposited == itemPrice) {
+            return true;
+        }
+        return false;
     }
 }
