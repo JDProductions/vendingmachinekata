@@ -12,6 +12,7 @@ public class VendingMachine {
     private int chipsInStock = 5;
     private double chipsPrice = 0.50;
     private boolean wasChipButtonPressed = false;
+    private boolean transactionSuccessful = false;
 
 
     private String stateMessage = "INSERT COIN";
@@ -48,14 +49,21 @@ public class VendingMachine {
     public void dispense(int itemID) {
         switch (itemID) {
             case chipsItemID:
+                if (transactionSuccessful) {
+                    setStateMessage("INSERT COIN");
+                }
                 if (doWeHaveChipsInStock() && totalAmountDeposited >= chipsPrice) {
                     chipsInStock -= 1;
-                    setStateMessage("THANK YOU");
+
                     if (calculateChange(chipsPrice)) {
                         setTotalAmountDeposited(0.0);
+                        setStateMessage("THANK YOU");
+                        transactionSuccessful = true;
                     }
                 }
                 break;
+
+            default:
         }
     }
 
