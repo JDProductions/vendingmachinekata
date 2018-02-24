@@ -159,4 +159,16 @@ public class VendingMachineTest {
         assertEquals(4, vendingMachine.getColasInStock());
     }
 
+    @Test
+    public void whenIPressTheColaButtonAndIDontHaveEnoughMoneyDepositedTheDisplayMessageWillReadPRICEAndTheCostOfTheCola() {
+        double quarter1 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        double quarter2 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        double quarter3 = vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+
+        vendingMachine.pressedButton("Cola");
+
+        assertEquals("PRICE " + "1.0", vendingMachine.getStateMessage());
+
+    }
+
 }
