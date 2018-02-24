@@ -25,18 +25,16 @@ public class VendingMachine {
         if (weight == ONE_GRAM && diameter == ONE_MILLIMETER) {
             setCoinValue(0.25);
             incrementTotalAmountDepositedByCoinValue();
-            return coinValue;
         } else if (weight == TWO_GRAMS && diameter == TWO_MILLIMETERS) {
             setCoinValue(0.10);
             incrementTotalAmountDepositedByCoinValue();
-            return coinValue;
         } else if (weight == THREE_GRAMS && diameter == THREE_MILLIMETERS) {
             setCoinValue(0.05);
             incrementTotalAmountDepositedByCoinValue();
-            return coinValue;
-        } else
+        } else {
             setCoinValue(0.01);
-        coinReturnAmount += coinValue;
+            coinReturnAmount += coinValue;
+        }
         return coinValue;
 
     }
