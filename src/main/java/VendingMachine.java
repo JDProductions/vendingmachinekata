@@ -152,4 +152,8 @@ public class VendingMachine {
         }
         return false;
     }
+
+    public int getColasInStock() {
+        return this.colaInStock;
+    }
 }
