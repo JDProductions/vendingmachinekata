@@ -81,8 +81,8 @@ public class VendingMachine {
                 if (doWeHaveItemInStock("Chips") && totalAmountDeposited >= chipsPrice) {
                     chipsInStock -= 1;
                     if (totalAmountDeposited > chipsPrice) {
-                        totalAmountDeposited = totalAmountDeposited - chipsPrice;
-                        coinReturnAmount += totalAmountDeposited;
+                        makeChange(chipsPrice);
+                        incrementCoinReturnAmount();
                     }
                     else if (calculateChange(chipsPrice)) {
                         setTotalAmountDeposited(0.0);
@@ -117,6 +117,10 @@ public class VendingMachine {
                     }
                 }
         }
+    }
+
+    private void incrementCoinReturnAmount() {
+        coinReturnAmount += totalAmountDeposited;
     }
 
 
@@ -202,5 +206,9 @@ public class VendingMachine {
 
     public int getCandyInStock() {
         return candyInStock;
+    }
+
+    public void makeChange(double itemPrice) {
+        this.totalAmountDeposited -= itemPrice;
     }
 }
