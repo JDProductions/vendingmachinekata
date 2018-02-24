@@ -12,6 +12,22 @@ public class VendingMachineTest {
 
     }
 
+    private double DEPOSIT_QUARTER() {
+        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+    }
+
+    private double DEPOSIT_NICKEL() {
+        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(3,3);
+    }
+
+    private double DEPOSIT_PENNY() {
+        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(4,4);
+    }
+
+    private double DEPOSIT_DIME() {
+        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2,2);
+    }
+
     @Test
     public void whenIInsertAValidCoinTheDisplayMessageShouldReadTheTotalDepositedAmount() {
         DEPOSIT_QUARTER();
@@ -74,10 +90,6 @@ public class VendingMachineTest {
 
         assertEquals(0.65,vendingMachine.getTotalAmountDeposited());
 
-    }
-
-    private double DEPOSIT_PENNY() {
-        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(4,4);
     }
 
     @Test
@@ -202,10 +214,6 @@ public class VendingMachineTest {
         assertEquals(4, vendingMachine.getCandyInStock());
     }
 
-    private double DEPOSIT_NICKEL() {
-        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(3,3);
-    }
-
     @Test
     public void whenIPressTheCandyButtonAndIDontHaveEnoughMoneyDepositedTheDisplayMessageWillReadPRICEAndTheCostOfTheCandy() {
         DEPOSIT_QUARTER();
@@ -265,10 +273,6 @@ public class VendingMachineTest {
         assertEquals(.6, vendingMachine.getCoinReturnAmount());
     }
 
-    private double DEPOSIT_DIME() {
-        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2,2);
-    }
-
     @Test
     public void whenIInsertMoneyAndPushReturnCoinButtonTheDisplayMessageShouldSayINSERTCOIN() {
         DEPOSIT_QUARTER();
@@ -315,9 +319,8 @@ public class VendingMachineTest {
         assertEquals("SOLD OUT", vendingMachine.getStateMessage());
     }
 
-    private double DEPOSIT_QUARTER() {
-        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
-    }
+
+
 
 
 }
