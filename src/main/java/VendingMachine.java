@@ -248,4 +248,8 @@ public class VendingMachine {
     public void setChipsInStock(int numberInStock) {
         this.chipsInStock = numberInStock;
     }
+
+    public void setColaInStock(int numberInStock) {
+
+    }
 }
