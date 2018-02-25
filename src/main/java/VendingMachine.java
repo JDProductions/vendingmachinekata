@@ -113,6 +113,7 @@ public class VendingMachine {
                     if (totalAmountDeposited > colaPrice) {
                         makeChange(colaPrice);
                         incrementCoinReturnAmount();
+                        setStateMessage("THANK YOU");
                     }
                     else if (calculateChange(colaPrice)) {
                         setTotalAmountDeposited(0.0);
