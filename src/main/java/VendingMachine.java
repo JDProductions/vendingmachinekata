@@ -95,6 +95,7 @@ public class VendingMachine {
                     if (totalAmountDeposited > chipsPrice) {
                         makeChange(chipsPrice);
                         incrementCoinReturnAmount();
+                        setStateMessage("THANK YOU");
                     }
                     else if (calculateChange(chipsPrice)) {
                         setTotalAmountDeposited(0.0);
