@@ -251,7 +251,7 @@ public class VendingMachineTest {
     }
 
     @Test
-    public void whenIInsertMoreMoneyThenWhatsNeededForColaIShouldStillSeeTHANKDisplayedSinceItsASuccessfulTransaction() {
+    public void whenIInsertMoreMoneyThenWhatsNeededForColaIShouldStillSeeTHANKYOUDisplayedSinceItsASuccessfulTransaction() {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
