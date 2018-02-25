@@ -179,7 +179,13 @@ public class VendingMachine {
             if (candyInStock > 0) {
                 return true;
             }
-            setStateMessage("SOLD OUT");
+            else if (soldOutButtonCounter == 0) {
+                setStateMessage("SOLD OUT");
+                soldOutButtonCounter++;
+            }
+            else {
+                setStateMessage(Double.toString(this.totalAmountDeposited));
+            }
         }
         return false;
     }
