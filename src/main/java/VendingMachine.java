@@ -179,6 +179,7 @@ public class VendingMachine {
             if (candyInStock > 0) {
                 return true;
             }
+            setStateMessage("SOLD OUT");
         }
         return false;
     }
