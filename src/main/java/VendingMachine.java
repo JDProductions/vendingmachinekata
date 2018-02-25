@@ -27,15 +27,15 @@ public class VendingMachine {
 
     private boolean wasReturnButtonPressed = false;
 
-    int soldOutButtonCounter = 0;
+    private int soldOutButtonCounter = 0;
 
 
 
     private String stateMessage = Constants.INSERT_COIN;
 
-    double coinValue = 0;
-    double totalAmountDeposited = 0;
-    double coinReturnAmount;
+    private double coinValue = 0;
+    private double totalAmountDeposited = 0;
+    private double coinReturnAmount;
     private double moneyInMachine = 5.00;
 
 
@@ -80,7 +80,7 @@ public class VendingMachine {
     }
 
 
-    public void dispense(int itemID) {
+    private void dispense(int itemID) {
         switch (itemID) {
             case chipsItemID:
                 if (isTotalAmountDepositedLessThanItemPrice(this.chipsPrice)) {
@@ -142,17 +142,17 @@ public class VendingMachine {
     }
 
 
-    public boolean doWeHaveItemInStock(String itemName) {
+    private boolean doWeHaveItemInStock(String itemName) {
         if (itemName.equals(Constants.CHIPS)) {
-            if (evaluator(chipsInStock > 0)) return true;
+            return evaluator(chipsInStock > 0);
 
 
         }
         else if (itemName.equals(Constants.COLA)) {
-            if (evaluator(colaInStock > 0)) return true;
+            return evaluator(colaInStock > 0);
         }
         else if (itemName.equals(Constants.CANDY)) {
-            if (evaluator(candyInStock > 0)) return true;
+            return evaluator(candyInStock > 0);
         }
         return false;
     }
@@ -173,7 +173,7 @@ public class VendingMachine {
         return false;
     }
 
-    public void setWasChipButtonPressed(boolean wasChipButtonPressed) {
+    private void setWasChipButtonPressed(boolean wasChipButtonPressed) {
         this.wasChipButtonPressed = wasChipButtonPressed;
     }
 
@@ -193,11 +193,11 @@ public class VendingMachine {
         return this.totalAmountDeposited;
     }
 
-    public void setCoinValue(double coinValue) {
+    private void setCoinValue(double coinValue) {
         this.coinValue = coinValue;
     }
 
-    public void setStateMessage(String stateMessage) {
+    private void setStateMessage(String stateMessage) {
         this.stateMessage = stateMessage;
     }
 
@@ -227,15 +227,12 @@ public class VendingMachine {
         return stateMessage;
     }
 
-    public void setTotalAmountDeposited(double totalAmountDeposited) {
+    private void setTotalAmountDeposited(double totalAmountDeposited) {
         this.totalAmountDeposited = totalAmountDeposited;
     }
 
-    public boolean calculateChange(double itemPrice) {
-        if (this.totalAmountDeposited == itemPrice) {
-            return true;
-        }
-        return false;
+    private boolean calculateChange(double itemPrice) {
+        return this.totalAmountDeposited == itemPrice;
     }
 
     public int getColasInStock() {
@@ -246,7 +243,7 @@ public class VendingMachine {
         return candyInStock;
     }
 
-    public void makeChange(double itemPrice) {
+    private void makeChange(double itemPrice) {
         this.totalAmountDeposited = BigDecimal.valueOf(this.totalAmountDeposited).subtract(BigDecimal.valueOf(itemPrice)).doubleValue();
     }
 
@@ -267,9 +264,6 @@ public class VendingMachine {
     }
 
     private boolean EnoughMoneyInMachineForChange() {
-        if (moneyInMachine < chipsPrice || moneyInMachine <  colaPrice || moneyInMachine < candyPrice) {
-            return true;
-        }
-        return false;
+        return moneyInMachine < chipsPrice || moneyInMachine < colaPrice || moneyInMachine < candyPrice;
     }
 }
