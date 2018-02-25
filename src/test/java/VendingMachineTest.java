@@ -13,19 +13,19 @@ public class VendingMachineTest {
     }
 
     private double DEPOSIT_QUARTER() {
-        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1,1);
+        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1, 1);
     }
 
     private double DEPOSIT_NICKEL() {
-        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(3,3);
+        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(3, 3);
     }
 
     private double DEPOSIT_PENNY() {
-        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(4,4);
+        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(4, 4);
     }
 
     private double DEPOSIT_DIME() {
-        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2,2);
+        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2, 2);
     }
 
     @Test
@@ -34,28 +34,28 @@ public class VendingMachineTest {
         DEPOSIT_DIME();
 
 
-        assertEquals("0.35",vendingMachine.getStateMessage());
+        assertEquals("0.35", vendingMachine.getStateMessage());
     }
 
     @Test
     public void whenInsertACoinDetermineTheValueBasedOffOfWeightAndDiameterAndReturnValueOfAQuarter() {
         double coinAmount = DEPOSIT_QUARTER();
 
-        assertEquals(0.25, coinAmount,0);
+        assertEquals(0.25, coinAmount, 0);
     }
 
     @Test
     public void whenInsertACoinDetermineTheValueBasedOffOfWeightAndDiameterAndReturnValueOfADime() {
         double coinAmount = DEPOSIT_DIME();
 
-        assertEquals(0.10, coinAmount,0);
+        assertEquals(0.10, coinAmount, 0);
     }
 
     @Test
     public void whenInsertACoinDetermineTheValueBasedOffOfWeightAndDiameterAndReturnValueOfANickel() {
         double coinAmount = DEPOSIT_NICKEL();
 
-        assertEquals(0.05, coinAmount,0);
+        assertEquals(0.05, coinAmount, 0);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
 
 
-        assertEquals(0.50,vendingMachine.getTotalAmountDeposited());
+        assertEquals(0.50, vendingMachine.getTotalAmountDeposited());
 
     }
 
@@ -88,19 +88,19 @@ public class VendingMachineTest {
         DEPOSIT_PENNY();
 
 
-        assertEquals(0.65,vendingMachine.getTotalAmountDeposited());
+        assertEquals(0.65, vendingMachine.getTotalAmountDeposited());
 
     }
 
     @Test
-    public void whenIInsertEnoughMoneyForChipsIShouldDispensedChipsAndTheDisplayMessageShouldReadTHANKYOU(){
+    public void whenIInsertEnoughMoneyForChipsIShouldDispensedChipsAndTheDisplayMessageShouldReadTHANKYOU() {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
 
         vendingMachine.pressedButton("Chips");
 
 
-        assertEquals("THANK YOU",vendingMachine.getStateMessage());
+        assertEquals("THANK YOU", vendingMachine.getStateMessage());
 
     }
 
@@ -137,7 +137,7 @@ public class VendingMachineTest {
     }
 
     @Test
-    public void whenIInsertEnoughMoneyForColaIShouldDispensedColaAndTheDisplayMessageShouldReadTHANKYOU(){
+    public void whenIInsertEnoughMoneyForColaIShouldDispensedColaAndTheDisplayMessageShouldReadTHANKYOU() {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
@@ -146,7 +146,7 @@ public class VendingMachineTest {
         vendingMachine.pressedButton("Cola");
 
 
-        assertEquals("THANK YOU",vendingMachine.getStateMessage());
+        assertEquals("THANK YOU", vendingMachine.getStateMessage());
 
     }
 
@@ -176,7 +176,7 @@ public class VendingMachineTest {
     }
 
     @Test
-    public void whenIInsertEnoughMoneyForCandyIShouldDispensedCandyAndTheDisplayMessageShouldReadTHANKYOU(){
+    public void whenIInsertEnoughMoneyForCandyIShouldDispensedCandyAndTheDisplayMessageShouldReadTHANKYOU() {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
         DEPOSIT_DIME();
@@ -185,7 +185,7 @@ public class VendingMachineTest {
         vendingMachine.pressedButton("Candy");
 
 
-        assertEquals("THANK YOU",vendingMachine.getStateMessage());
+        assertEquals("THANK YOU", vendingMachine.getStateMessage());
 
     }
 
@@ -279,10 +279,10 @@ public class VendingMachineTest {
 
     @Test
     public void whenIInsertMoreMoneyThenWhatsNeededForCandyIShouldBeReturnedChange() {
-         DEPOSIT_QUARTER();
-         DEPOSIT_QUARTER();
-         DEPOSIT_DIME();
-         DEPOSIT_DIME();
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_DIME();
+        DEPOSIT_DIME();
 
         vendingMachine.pressedButton("Candy");
 
@@ -388,7 +388,7 @@ public class VendingMachineTest {
     }
 
     @Test
-    public void whenMachineCanOnlyAcceptExactChange(){
+    public void whenMachineCanOnlyAcceptExactChange() {
         vendingMachine.setMoneyInMachine(0.0);
 
         assertEquals("EXACT CHANGE ONLY", vendingMachine.getStateMessage());
