@@ -37,6 +37,7 @@ public class VendingMachine {
     double coinValue = 0;
     double totalAmountDeposited = 0;
     double coinReturnAmount;
+    private double moneyInMachine;
 
 
     public double determineCoinValueBasedOnWeightAndSizeByDiameter(int weight, int diameter) {
@@ -273,5 +274,9 @@ public class VendingMachine {
 
     public void setCandyInStock(int numberInStock) {
         this.candyInStock = numberInStock;
+    }
+
+    public void setMoneyInMachine(double moneyInMachine) {
+        this.moneyInMachine = moneyInMachine;
     }
 }

@@ -360,4 +360,11 @@ public class VendingMachineTest {
         assertEquals("0.65", vendingMachine.getStateMessage());
     }
 
+    @Test
+    public void whenMachineCanOnlyAcceptExactChange(){
+        vendingMachine.setMoneyInMachine(0.0);
+
+        assertEquals("EXACT CHANGE ONLY", vendingMachine.getStateMessage());
+    }
+
 }
