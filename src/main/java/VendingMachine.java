@@ -132,6 +132,7 @@ public class VendingMachine {
                     if (totalAmountDeposited > candyPrice) {
                         makeChange(candyPrice);
                         incrementCoinReturnAmount();
+                        setStateMessage("THANK YOU");
                     }
                     else if (calculateChange(candyPrice)) {
                         setTotalAmountDeposited(0.0);
