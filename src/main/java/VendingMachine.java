@@ -185,6 +185,7 @@ public class VendingMachine {
             }
             else {
                 setStateMessage(Double.toString(this.totalAmountDeposited));
+                soldOutButtonCounter = 0;
             }
         }
         return false;
