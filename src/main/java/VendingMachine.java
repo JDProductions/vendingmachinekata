@@ -199,7 +199,7 @@ public class VendingMachine {
             return stateMessage;
         } else if (wasReturnButtonPressed) {
             return stateMessage;
-        } else if (EnoughMoneyInMachineForChange()) {
+        } else if (enoughMoneyInMachineForChange()) {
             setStateMessage(Constants.EXACT_CHANGE);
             return stateMessage;
         } else if (totalAmountDeposited > 0) {
@@ -244,7 +244,7 @@ public class VendingMachine {
         this.moneyInMachine = moneyInMachine;
     }
 
-    private boolean EnoughMoneyInMachineForChange() {
+    private boolean enoughMoneyInMachineForChange() {
         return moneyInMachine < chipsPrice || moneyInMachine < colaPrice || moneyInMachine < candyPrice;
     }
 }
