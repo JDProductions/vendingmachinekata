@@ -333,4 +333,17 @@ public class VendingMachineTest {
         assertEquals("1.0", vendingMachine.getStateMessage());
     }
 
+    @Test
+    public void whenIInsertMoneyAndPushTheCandyButtonButCandyIsSoldOutTheDisplayMessageShouldReadSOLDOUT() {
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_DIME();
+        DEPOSIT_NICKEL();
+
+        vendingMachine.setCandyInStock(0);
+        vendingMachine.pressedButton("Candy");
+
+        assertEquals("SOLD OUT", vendingMachine.getStateMessage());
+    }
+
 }
