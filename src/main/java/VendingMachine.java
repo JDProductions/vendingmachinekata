@@ -159,14 +159,6 @@ public class VendingMachine {
         return false;
     }
 
-    private void setWasChipButtonPressed(boolean wasChipButtonPressed) {
-        this.wasChipButtonPressed = wasChipButtonPressed;
-    }
-
-    public int getChipsInStock() {
-        return this.chipsInStock;
-    }
-
     private void incrementTotalAmountDepositedByCoinValue() {
         this.totalAmountDeposited += this.coinValue;
     }
@@ -205,24 +197,32 @@ public class VendingMachine {
         return this.stateMessage;
     }
 
-    public int getColasInStock() {
-        return this.colaInStock;
-    }
-
-    public int getCandyInStock() {
-        return candyInStock;
-    }
-
     private void makeChange(double itemPrice) {
         this.totalAmountDeposited = BigDecimal.valueOf(this.totalAmountDeposited).subtract(BigDecimal.valueOf(itemPrice)).doubleValue();
+    }
+
+    private void setWasChipButtonPressed(boolean wasChipButtonPressed) {
+        this.wasChipButtonPressed = wasChipButtonPressed;
+    }
+
+    public int getChipsInStock() {
+        return this.chipsInStock;
     }
 
     public void setChipsInStock(int numberInStock) {
         this.chipsInStock = numberInStock;
     }
 
+    public int getColasInStock() {
+        return this.colaInStock;
+    }
+
     public void setColaInStock(int numberInStock) {
         this.colaInStock = numberInStock;
+    }
+
+    public int getCandyInStock() {
+        return candyInStock;
     }
 
     public void setCandyInStock(int numberInStock) {
