@@ -71,7 +71,6 @@ public class VendingMachineTest {
 
     @Test
     public void whenIInsertCoinsTheTotalDepositedShouldBeValueOfAllCoinsDepositedQuarters() {
-        // I know these variable aren't being used but I added them for readability for the Artisan.
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
 
@@ -82,7 +81,6 @@ public class VendingMachineTest {
 
     @Test
     public void whenIInsertCoinsTheTotalDepositedShouldBeValueOfAllCoinsDeposited() {
-        // I know these variable aren't being used but I added them for readability for the Artisan.
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
         DEPOSIT_DIME();
@@ -125,7 +123,6 @@ public class VendingMachineTest {
 
         vendingMachine.pressedButton("Chips");
 
-        // There are 5 bags of chips in stock, I am now expecting 4 bags to be in stock meaning one of the bags has been dispensed.
         assertEquals(0.0, vendingMachine.getTotalAmountDeposited());
     }
 
