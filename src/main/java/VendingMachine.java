@@ -37,7 +37,7 @@ public class VendingMachine {
     double coinValue = 0;
     double totalAmountDeposited = 0;
     double coinReturnAmount;
-    private double moneyInMachine;
+    private double moneyInMachine = 5.00;
 
 
     public double determineCoinValueBasedOnWeightAndSizeByDiameter(int weight, int diameter) {
@@ -235,6 +235,11 @@ public class VendingMachine {
         else if (wasReturnButtonPressed) {
             return stateMessage;
         }
+
+        else if (EnoughMoneyInMachineForChange()) {
+            setStateMessage("EXACT CHANGE ONLY");
+            return stateMessage;
+        }
         else if (totalAmountDeposited > 0) {
             return Double.toString(totalAmountDeposited);
         }
@@ -278,5 +283,12 @@ public class VendingMachine {
 
     public void setMoneyInMachine(double moneyInMachine) {
         this.moneyInMachine = moneyInMachine;
+    }
+
+    private boolean EnoughMoneyInMachineForChange() {
+        if (moneyInMachine < chipsPrice || moneyInMachine <  colaPrice || moneyInMachine < candyPrice) {
+            return true;
+        }
+        return false;
     }
 }
