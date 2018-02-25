@@ -238,6 +238,19 @@ public class VendingMachineTest {
     }
 
     @Test
+    public void whenIInsertMoreMoneyThenWhatsNeededForChipsIShouldStillSeeTHANKYOUDisplayedSinceItsASuccessfulTransaction() {
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+
+        vendingMachine.pressedButton("Chips");
+
+        assertEquals("THANK YOU", vendingMachine.getStateMessage());
+    }
+
+    @Test
     public void whenIInsertMoreMoneyThenWhatsNeededForColaIShouldBeReturnedChange() {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
