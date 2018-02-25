@@ -1,6 +1,13 @@
+//  Created by James DuBois on 2/21/18.
+//  Copyright © 2018 VendingMachineKata. All rights reserved.
+
+
 import java.math.BigDecimal;
 
 public class VendingMachine {
+    /* I decided to not make the item prices constants because when the owner of this
+       "machine" wants to update the price it will be possible  */
+
 
     private final int ONE_GRAM = 1;
     private final int ONE_MILLIMETER = 1;
@@ -9,19 +16,19 @@ public class VendingMachine {
     private final int THREE_GRAMS = 3;
     private final int THREE_MILLIMETERS = 3;
 
-    private final int chipsItemID = 1;
+    private final int CHIPS_ITEM_ID = 1;
 
     private int chipsInStock = 5;
     private double chipsPrice = 0.50;
     private boolean wasChipButtonPressed = false;
 
     private final double colaPrice = 1.00;
-    private final int colaItemID = 2;
+    private final int COLA_ITEM_ID = 2;
     private int colaInStock = 5;
     private boolean wasColaButtonPressed = false;
 
     private final double candyPrice = 0.65;
-    private final int candyItemID = 3;
+    private final int CANDY_ITEM_ID = 3;
     private int candyInStock = 5;
     private boolean wasCandyButtonPressed = false;
 
@@ -59,14 +66,14 @@ public class VendingMachine {
     public void pressedButton(String item) {
         if (item.equals(Constants.CHIPS)) {
             this.setWasChipButtonPressed(true);
-            this.dispense(chipsItemID);
+            this.dispense(CHIPS_ITEM_ID);
 
         } else if (item.equals(Constants.COLA)) {
             this.wasColaButtonPressed = true;
-            this.dispense(colaItemID);
+            this.dispense(COLA_ITEM_ID);
         } else if (item.equals(Constants.CANDY)) {
             this.wasCandyButtonPressed = true;
-            this.dispense(candyItemID);
+            this.dispense(CANDY_ITEM_ID);
         } else {
             this.coinReturnAmount += this.totalAmountDeposited;
             this.wasReturnButtonPressed = true;
@@ -77,7 +84,7 @@ public class VendingMachine {
 
     private void dispense(int itemID) {
         switch (itemID) {
-            case chipsItemID:
+            case CHIPS_ITEM_ID:
                 if (this.isTotalAmountDepositedLessThanItemPrice(this.chipsPrice)) {
                     this.setStateMessage(Constants.PRICE + convertDoubleToString(this.chipsPrice));
                 } else if (doWeHaveItemInStock(Constants.CHIPS) && totalAmountDeposited >= chipsPrice) {
@@ -86,7 +93,7 @@ public class VendingMachine {
                 }
                 break;
 
-            case colaItemID:
+            case COLA_ITEM_ID:
                 if (this.isTotalAmountDepositedLessThanItemPrice(this.colaPrice)) {
                     this.setStateMessage(Constants.PRICE + convertDoubleToString(this.colaPrice));
                 }
@@ -96,7 +103,7 @@ public class VendingMachine {
                 }
                 break;
 
-            case candyItemID:
+            case CANDY_ITEM_ID:
                 if (this.isTotalAmountDepositedLessThanItemPrice(this.candyPrice)) {
                     setStateMessage(Constants.PRICE + convertDoubleToString(this.candyPrice));
                 }
