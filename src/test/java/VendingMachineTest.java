@@ -346,4 +346,18 @@ public class VendingMachineTest {
         assertEquals("SOLD OUT", vendingMachine.getStateMessage());
     }
 
+    @Test
+    public void whenIInsertMoneyAndPushTheCandyButtonButCandyIsSoldOut2xOnTheSecondPressIShouldSeeTheAmountIHaveDeposited() {
+        DEPOSIT_QUARTER();
+        DEPOSIT_QUARTER();
+        DEPOSIT_DIME();
+        DEPOSIT_NICKEL();
+
+        vendingMachine.setCandyInStock(0);
+        vendingMachine.pressedButton("Candy");
+        vendingMachine.pressedButton("Candy");
+
+        assertEquals("0.65", vendingMachine.getStateMessage());
+    }
+
 }
