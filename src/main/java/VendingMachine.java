@@ -83,58 +83,58 @@ public class VendingMachine {
     public void dispense(int itemID) {
         switch (itemID) {
             case chipsItemID:
-                if (totalAmountDeposited < chipsPrice) {
-                    setStateMessage("PRICE " + Double.toString(chipsPrice));
+                if (isTotalAmountDepositedLessThanItemPrice(this.chipsPrice)) {
+                    setStateMessage("PRICE " + convertDoubleToString(this.chipsPrice));
                 }
                 else if (doWeHaveItemInStock("Chips") && totalAmountDeposited >= chipsPrice) {
                     chipsInStock -= 1;
-                    if (totalAmountDeposited > chipsPrice) {
-                        makeChange(chipsPrice);
-                        incrementCoinReturnAmount();
-                        setStateMessage("THANK YOU");
-                    }
-                    else if (calculateChange(chipsPrice)) {
-                        setTotalAmountDeposited(0.0);
-                        setStateMessage("THANK YOU");
-                    }
+                    dispenseFlow(chipsPrice);
+                    exactChangeDispenseFlow(calculateChange(chipsPrice));
                 }
                 break;
 
             case colaItemID:
-                if (totalAmountDeposited < colaPrice) {
-                setStateMessage("PRICE " + Double.toString(colaPrice));
+                if (isTotalAmountDepositedLessThanItemPrice(this.colaPrice)) {
+                setStateMessage("PRICE " + convertDoubleToString(this.colaPrice));
             }
                 if (doWeHaveItemInStock("Cola") && totalAmountDeposited >= colaPrice) {
                     colaInStock -= 1;
-                    if (totalAmountDeposited > colaPrice) {
-                        makeChange(colaPrice);
-                        incrementCoinReturnAmount();
-                        setStateMessage("THANK YOU");
-                    }
-                    else if (calculateChange(colaPrice)) {
-                        setTotalAmountDeposited(0.0);
-                        setStateMessage("THANK YOU");
-                    }
+                    dispenseFlow(colaPrice);
+                    exactChangeDispenseFlow(calculateChange(colaPrice));
                 }
                 break;
 
             case candyItemID:
-                if (totalAmountDeposited < candyPrice) {
-                    setStateMessage("PRICE " + Double.toString(candyPrice));
+                if (isTotalAmountDepositedLessThanItemPrice(this.candyPrice)) {
+                    setStateMessage("PRICE " + convertDoubleToString(this.candyPrice));
                 }
                 if (doWeHaveItemInStock("Candy") && totalAmountDeposited >= candyPrice) {
                     candyInStock -= 1;
-                    if (totalAmountDeposited > candyPrice) {
-                        makeChange(candyPrice);
-                        incrementCoinReturnAmount();
-                        setStateMessage("THANK YOU");
-                    }
-                    else if (calculateChange(candyPrice)) {
-                        setTotalAmountDeposited(0.0);
-                        setStateMessage("THANK YOU");
-                    }
+                    dispenseFlow(candyPrice);
+                    exactChangeDispenseFlow(calculateChange(candyPrice));
                 }
         }
+    }
+
+    private void exactChangeDispenseFlow(boolean b) {
+        if (b) {
+            setTotalAmountDeposited(0.0);
+            setStateMessage("THANK YOU");
+        }
+    }
+
+    private boolean isTotalAmountDepositedLessThanItemPrice(double itemPrice) {
+        return totalAmountDeposited < itemPrice;
+    }
+
+    private String convertDoubleToString(double itemPrice) {
+        return Double.toString(itemPrice);
+    }
+
+    private void dispenseFlow(double itemPrice) {
+        makeChange(itemPrice);
+        incrementCoinReturnAmount();
+        setStateMessage("THANK YOU");
     }
 
     private void incrementCoinReturnAmount() {
