@@ -83,7 +83,6 @@ public class VendingMachine {
                 } else if (doWeHaveItemInStock(Constants.CHIPS) && totalAmountDeposited >= chipsPrice) {
                     chipsInStock -= 1;
                     dispenseFlow(chipsPrice);
-                    exactChangeDispenseFlow(calculateChange(chipsPrice));
                 }
                 break;
 
@@ -94,7 +93,6 @@ public class VendingMachine {
                 if (doWeHaveItemInStock(Constants.COLA) && totalAmountDeposited >= colaPrice) {
                     colaInStock -= 1;
                     dispenseFlow(colaPrice);
-                    exactChangeDispenseFlow(calculateChange(colaPrice));
                 }
                 break;
 
@@ -105,15 +103,7 @@ public class VendingMachine {
                 if (doWeHaveItemInStock(Constants.CANDY) && totalAmountDeposited >= candyPrice) {
                     candyInStock -= 1;
                     dispenseFlow(candyPrice);
-                    exactChangeDispenseFlow(calculateChange(candyPrice));
                 }
-        }
-    }
-
-    private void exactChangeDispenseFlow(boolean b) {
-        if (b) {
-            setTotalAmountDeposited(0.0);
-            setStateMessage(Constants.THANK_YOU);
         }
     }
 
