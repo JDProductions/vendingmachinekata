@@ -127,18 +127,6 @@ public class VendingMachineTest {
     }
 
     @Test
-    public void afterASuccessfulTransactionBuyingChipsWhenIPressTheChipButtonAgainIShouldSeeTheDisplayMessageAsINSERTCOIN() {
-        DEPOSIT_QUARTER();
-        DEPOSIT_QUARTER();
-
-        vendingMachine.pressedButton("Chips");
-        vendingMachine.pressedButton("Chips");
-
-        assertEquals("INSERT COIN", vendingMachine.getStateMessage());
-
-    }
-
-    @Test
     public void whenIPressTheChipButtonAndIDontHaveEnoughMoneyDepositedTheDisplayMessageWillReadPRICEAndTheCostOfTheChips() {
         DEPOSIT_QUARTER();
 
