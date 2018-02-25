@@ -149,48 +149,31 @@ public class VendingMachine {
 
     public boolean doWeHaveItemInStock(String itemName) {
         if (itemName.equals("Chips")) {
-            if (chipsInStock > 0)
-            {
-                return true;
-            }
-            else if (soldOutButtonCounter == 0) {
-                setStateMessage("SOLD OUT");
-                soldOutButtonCounter++;
-            }
-            else {
-                setStateMessage(Double.toString(this.totalAmountDeposited));
-                soldOutButtonCounter = 0;
-            }
+            if (evaluator(chipsInStock > 0)) return true;
 
 
         }
         else if (itemName.equals("Cola")) {
-            if (colaInStock > 0) {
-                return true;
-            }
-
-            else if (soldOutButtonCounter == 0) {
-                setStateMessage("SOLD OUT");
-                soldOutButtonCounter++;
-
-            }
-            else {
-                setStateMessage(Double.toString(this.totalAmountDeposited));
-                soldOutButtonCounter = 0;
-            }
+            if (evaluator(colaInStock > 0)) return true;
         }
         else if (itemName.equals("Candy")) {
-            if (candyInStock > 0) {
-                return true;
-            }
-            else if (soldOutButtonCounter == 0) {
-                setStateMessage("SOLD OUT");
-                soldOutButtonCounter++;
-            }
-            else {
-                setStateMessage(Double.toString(this.totalAmountDeposited));
-                soldOutButtonCounter = 0;
-            }
+            if (evaluator(candyInStock > 0)) return true;
+        }
+        return false;
+    }
+
+    private boolean evaluator(boolean b) {
+        if (b)
+        {
+            return true;
+        }
+        else if (soldOutButtonCounter == 0) {
+            setStateMessage("SOLD OUT");
+            soldOutButtonCounter++;
+        }
+        else {
+            setStateMessage(Double.toString(this.totalAmountDeposited));
+            soldOutButtonCounter = 0;
         }
         return false;
     }
