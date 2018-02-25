@@ -14,7 +14,6 @@ public class VendingMachine {
     private int chipsInStock = 5;
     private double chipsPrice = 0.50;
     private boolean wasChipButtonPressed = false;
-    private boolean transactionSuccessful = false;
 
     private final double colaPrice = 1.00;
     private final int colaItemID = 2;
@@ -84,13 +83,10 @@ public class VendingMachine {
     public void dispense(int itemID) {
         switch (itemID) {
             case chipsItemID:
-                if (transactionSuccessful) {
-                    setStateMessage("INSERT COIN");
-                }
-                else if (totalAmountDeposited < chipsPrice) {
+                if (totalAmountDeposited < chipsPrice) {
                     setStateMessage("PRICE " + Double.toString(chipsPrice));
                 }
-                if (doWeHaveItemInStock("Chips") && totalAmountDeposited >= chipsPrice) {
+                else if (doWeHaveItemInStock("Chips") && totalAmountDeposited >= chipsPrice) {
                     chipsInStock -= 1;
                     if (totalAmountDeposited > chipsPrice) {
                         makeChange(chipsPrice);
@@ -100,7 +96,6 @@ public class VendingMachine {
                     else if (calculateChange(chipsPrice)) {
                         setTotalAmountDeposited(0.0);
                         setStateMessage("THANK YOU");
-                        transactionSuccessful = true;
                     }
                 }
                 break;
