@@ -164,7 +164,16 @@ public class VendingMachine {
             if (colaInStock > 0) {
                 return true;
             }
-            setStateMessage("SOLD OUT");
+
+            else if (soldOutButtonCounter == 0) {
+                setStateMessage("SOLD OUT");
+                soldOutButtonCounter++;
+
+            }
+            else {
+                setStateMessage(Double.toString(this.totalAmountDeposited));
+                soldOutButtonCounter = 0;
+            }
         }
         else if (itemName.equals("Candy")) {
             if (candyInStock > 0) {
