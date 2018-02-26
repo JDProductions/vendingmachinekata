@@ -41,21 +41,21 @@ public class VendingMachineTest {
     }
 
     @Test
-    public void whenInsertACoinDetermineTheValueBasedOffOfWeightAndDiameterAndReturnValueOfAQuarter() {
+    public void whenIInsertACoinDetermineTheValueBasedOffOfWeightAndDiameterAndReturnValueOfAQuarter() {
         double coinAmount = DEPOSIT_QUARTER();
 
         assertEquals(0.25, coinAmount, 0);
     }
 
     @Test
-    public void whenInsertACoinDetermineTheValueBasedOffOfWeightAndDiameterAndReturnValueOfADime() {
+    public void whenIInsertACoinDetermineTheValueBasedOffOfWeightAndDiameterAndReturnValueOfADime() {
         double coinAmount = DEPOSIT_DIME();
 
         assertEquals(0.10, coinAmount, 0);
     }
 
     @Test
-    public void whenInsertACoinDetermineTheValueBasedOffOfWeightAndDiameterAndReturnValueOfANickel() {
+    public void whenIInsertACoinDetermineTheValueBasedOffOfWeightAndDiameterAndReturnValueOfANickel() {
         double coinAmount = DEPOSIT_NICKEL();
 
         assertEquals(0.05, coinAmount, 0);
