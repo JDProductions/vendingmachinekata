@@ -8,7 +8,6 @@ public class VendingMachine {
     /* I decided to not make the item prices constants because when the owner of this
        "machine" wants to update the price it will be possible  */
 
-
     private final int ONE_GRAM = 1;
     private final int ONE_MILLIMETER = 1;
     private final int TWO_GRAMS = 2;
@@ -35,7 +34,6 @@ public class VendingMachine {
     private boolean wasReturnButtonPressed = false;
 
     private int soldOutButtonCounter = 0;
-
 
     private String stateMessage = Constants.INSERT_COIN;
 
@@ -136,7 +134,6 @@ public class VendingMachine {
     private void incrementCoinReturnAmount() {
         this.coinReturnAmount += this.totalAmountDeposited;
     }
-
 
     private boolean doWeHaveItemInStock(String itemName) {
         if (itemName.equals(Constants.CHIPS)) {
