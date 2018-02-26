@@ -78,8 +78,7 @@ public class VendingMachine {
             this.setStateMessage(Constants.INSERT_COIN);
         }
     }
-
-
+    
     private void dispense(int itemID) {
         switch (itemID) {
             case CHIPS_ITEM_ID:
