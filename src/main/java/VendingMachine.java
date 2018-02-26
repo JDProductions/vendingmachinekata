@@ -113,9 +113,9 @@ public class VendingMachine {
                 }
                 break;
 
-                default:
-                    // I added this default case for good measure, if the program gets here, something went seriously wrong!!!
-                    setStateMessage(Constants.ERROR);
+            default:
+                // I added this default case for good measure, if the program gets here, something went seriously wrong!!!
+                setStateMessage(Constants.ERROR);
         }
     }
 
