@@ -2,8 +2,7 @@
 
 # How to Setup Project / How to run tests
 
-```
-How to Setup Project / How to run tests 
+``` 
 1) Ideally, download IntelliJ Idea - it has a free 30-day evaluation phase. All default install settings are fine.
 2) Clone Repo
 3) Configure Your JDK if you haven't for IntelliJ, in this project I used JDK 9 but I think any recent JDK should be fine.
