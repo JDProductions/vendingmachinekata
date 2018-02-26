@@ -14,7 +14,7 @@ How to Setup Project / How to run tests
     - You should see the success message saying "All 33 tests passed".
 ```
 
-#Optional Plugin
+# Optional Plugin
 
 ```
 The plugin below is helpful for reading the tests, it converts your tests to a sentance wich you can view.
