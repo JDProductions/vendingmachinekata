@@ -11,7 +11,7 @@
     - If that is not the case, there should be a message that pops up at the bottom of the screen. saying Import Changes or it gives you the option Enable Auto Import, either will work.
     - Give IntelliJ some time to load/index and pull in dependencies, it really depends on how fast your pc setup is.
 5) Navigate to "VendingMachineTest" class, right click on it and click Run 'VendingMachineTest'
-    - You should see the success message saying "All 33 tests passed".
+    - You should see the success message saying "Tests Passed: 33 passed".
 ```
 
 # Optional Plugin
