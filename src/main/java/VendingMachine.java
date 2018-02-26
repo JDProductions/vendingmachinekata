@@ -16,7 +16,6 @@ public class VendingMachine {
     private final int THREE_MILLIMETERS = 3;
 
     private final int CHIPS_ITEM_ID = 1;
-
     private int chipsInStock = 5;
     private double chipsPrice = 0.50;
     private boolean wasChipButtonPressed = false;
@@ -136,11 +135,11 @@ public class VendingMachine {
 
     private boolean doWeHaveItemInStock(String itemName) {
         if (itemName.equals(Constants.CHIPS)) {
-            return this.evaluator(chipsInStock > 0);
+            return this.evaluator(this.chipsInStock > 0);
         } else if (itemName.equals(Constants.COLA)) {
-            return this.evaluator(colaInStock > 0);
+            return this.evaluator(this.colaInStock > 0);
         } else if (itemName.equals(Constants.CANDY)) {
-            return this.evaluator(candyInStock > 0);
+            return this.evaluator(this.candyInStock > 0);
         }
         return false;
     }
