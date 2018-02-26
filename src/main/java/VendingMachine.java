@@ -115,7 +115,7 @@ public class VendingMachine {
 
             default:
                 // I added this default case for good measure, if the program gets here, something went seriously wrong!!!
-                setStateMessage(Constants.ERROR);
+                this.setStateMessage(Constants.ERROR);
         }
     }
 
@@ -141,8 +141,6 @@ public class VendingMachine {
     private boolean doWeHaveItemInStock(String itemName) {
         if (itemName.equals(Constants.CHIPS)) {
             return evaluator(chipsInStock > 0);
-
-
         } else if (itemName.equals(Constants.COLA)) {
             return evaluator(colaInStock > 0);
         } else if (itemName.equals(Constants.CANDY)) {
@@ -154,12 +152,12 @@ public class VendingMachine {
     private boolean evaluator(boolean b) {
         if (b) {
             return true;
-        } else if (soldOutButtonCounter == 0) {
-            setStateMessage(Constants.SOLD_OUT);
-            soldOutButtonCounter++;
+        } else if (this.soldOutButtonCounter == 0) {
+            this.setStateMessage(Constants.SOLD_OUT);
+            this.soldOutButtonCounter++;
         } else {
             setStateMessage(Double.toString(this.totalAmountDeposited));
-            soldOutButtonCounter = 0;
+            this.soldOutButtonCounter = 0;
         }
         return false;
     }
