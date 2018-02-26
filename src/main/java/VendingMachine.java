@@ -78,13 +78,13 @@ public class VendingMachine {
             this.setStateMessage(Constants.INSERT_COIN);
         }
     }
-    
+
     private void dispense(int itemID) {
         switch (itemID) {
             case CHIPS_ITEM_ID:
                 if (this.isTotalAmountDepositedLessThanItemPrice(this.chipsPrice)) {
                     this.setStateMessage(Constants.PRICE + convertDoubleToString(this.chipsPrice));
-                } else if (doWeHaveItemInStock(Constants.CHIPS) && totalAmountDeposited >= chipsPrice) {
+                } else if (this.doWeHaveItemInStock(Constants.CHIPS) && totalAmountDeposited >= chipsPrice) {
                     this.chipsInStock -= 1;
                     this.dispenseFlow(chipsPrice);
                 }
