@@ -10,4 +10,5 @@ public class Constants {
     public final static String PRICE = "PRICE ";
     public final static String THANK_YOU = "THANK YOU";
     public final static String SOLD_OUT = "SOLD OUT";
+    public final static String ERROR = "SOLD OUT";
 }

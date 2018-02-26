@@ -111,6 +111,11 @@ public class VendingMachine {
                     this.candyInStock -= 1;
                     this.dispenseFlow(this.candyPrice);
                 }
+                break;
+
+                default:
+                    // I added this default case for good measure, if the program gets here, something went seriously wrong!!!
+                    setStateMessage(Constants.ERROR);
         }
     }
 
