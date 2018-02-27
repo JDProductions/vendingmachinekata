@@ -151,7 +151,7 @@ public class VendingMachine {
             this.setStateMessage(Constants.SOLD_OUT);
             this.soldOutButtonCounter++;
         } else {
-            this.setStateMessage(Double.toString(this.totalAmountDeposited));
+            this.setStateMessage(this.convertDoubleToString(this.totalAmountDeposited));
             this.soldOutButtonCounter = 0;
         }
         return false;
@@ -190,7 +190,7 @@ public class VendingMachine {
             this.setStateMessage(Constants.EXACT_CHANGE);
             return this.stateMessage;
         } else if (this.totalAmountDeposited > 0) {
-            return Double.toString(this.totalAmountDeposited);
+            return this.convertDoubleToString(this.totalAmountDeposited);
         }
         return this.stateMessage;
     }
