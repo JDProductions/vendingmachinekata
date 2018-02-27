@@ -83,7 +83,7 @@ public class VendingMachine {
             case CHIPS_ITEM_ID:
                 if (this.isTotalAmountDepositedLessThanItemPrice(this.chipsPrice)) {
                     this.setStateMessage(Constants.PRICE + this.convertDoubleToString(this.chipsPrice));
-                } else if (this.doWeHaveItemInStock(Constants.CHIPS) && this.isTotalDepositedGreaterThanItemPrice(this.chipsPrice)) {
+                } else if (this.doWeHaveItemInStock(Constants.CHIPS) && this.isTotalDepositedGreaterThanOrEqualToItemPrice(this.chipsPrice)) {
                     this.chipsInStock -= 1;
                     this.dispenseFlow(this.chipsPrice);
                 }
@@ -93,7 +93,7 @@ public class VendingMachine {
                 if (this.isTotalAmountDepositedLessThanItemPrice(this.colaPrice)) {
                     this.setStateMessage(Constants.PRICE + this.convertDoubleToString(this.colaPrice));
                 }
-                if (this.doWeHaveItemInStock(Constants.COLA) && this.isTotalDepositedGreaterThanItemPrice(this.colaPrice)) {
+                if (this.doWeHaveItemInStock(Constants.COLA) && this.isTotalDepositedGreaterThanOrEqualToItemPrice(this.colaPrice)) {
                     this.colaInStock -= 1;
                     this.dispenseFlow(this.colaPrice);
                 }
@@ -103,7 +103,7 @@ public class VendingMachine {
                 if (this.isTotalAmountDepositedLessThanItemPrice(this.candyPrice)) {
                     this.setStateMessage(Constants.PRICE + this.convertDoubleToString(this.candyPrice));
                 }
-                if (this.doWeHaveItemInStock(Constants.CANDY) && this.isTotalDepositedGreaterThanItemPrice(this.candyPrice)) {
+                if (this.doWeHaveItemInStock(Constants.CANDY) && this.isTotalDepositedGreaterThanOrEqualToItemPrice(this.candyPrice)) {
                     this.candyInStock -= 1;
                     this.dispenseFlow(this.candyPrice);
                 }
@@ -115,7 +115,7 @@ public class VendingMachine {
         }
     }
 
-    private boolean isTotalDepositedGreaterThanItemPrice(double itemPrice) {
+    private boolean isTotalDepositedGreaterThanOrEqualToItemPrice(double itemPrice) {
         return this.totalAmountDeposited >= itemPrice;
     }
 
