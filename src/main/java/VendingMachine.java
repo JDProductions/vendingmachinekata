@@ -83,9 +83,9 @@ public class VendingMachine {
             case CHIPS_ITEM_ID:
                 if (this.isTotalAmountDepositedLessThanItemPrice(this.chipsPrice)) {
                     this.setStateMessage(Constants.PRICE + this.convertDoubleToString(this.chipsPrice));
-                } else if (this.doWeHaveItemInStock(Constants.CHIPS) && this.totalAmountDeposited >= this.chipsPrice) {
+                } else if (this.doWeHaveItemInStock(Constants.CHIPS) && this.isTotalDepositedGreaterThanItemPrice(this.chipsPrice)) {
                     this.chipsInStock -= 1;
-                    this.dispenseFlow(chipsPrice);
+                    this.dispenseFlow(this.chipsPrice);
                 }
                 break;
 
@@ -93,9 +93,9 @@ public class VendingMachine {
                 if (this.isTotalAmountDepositedLessThanItemPrice(this.colaPrice)) {
                     this.setStateMessage(Constants.PRICE + this.convertDoubleToString(this.colaPrice));
                 }
-                if (this.doWeHaveItemInStock(Constants.COLA) && this.totalAmountDeposited >= this.colaPrice) {
+                if (this.doWeHaveItemInStock(Constants.COLA) && this.isTotalDepositedGreaterThanItemPrice(this.colaPrice)) {
                     this.colaInStock -= 1;
-                    this.dispenseFlow(colaPrice);
+                    this.dispenseFlow(this.colaPrice);
                 }
                 break;
 
@@ -103,7 +103,7 @@ public class VendingMachine {
                 if (this.isTotalAmountDepositedLessThanItemPrice(this.candyPrice)) {
                     this.setStateMessage(Constants.PRICE + this.convertDoubleToString(this.candyPrice));
                 }
-                if (this.doWeHaveItemInStock(Constants.CANDY) && this.totalAmountDeposited >= this.candyPrice) {
+                if (this.doWeHaveItemInStock(Constants.CANDY) && this.isTotalDepositedGreaterThanItemPrice(this.candyPrice)) {
                     this.candyInStock -= 1;
                     this.dispenseFlow(this.candyPrice);
                 }
@@ -113,6 +113,10 @@ public class VendingMachine {
                 // I added this default case for good measure, if the program gets here, something went seriously wrong!!!
                 this.setStateMessage(Constants.ERROR);
         }
+    }
+
+    private boolean isTotalDepositedGreaterThanItemPrice(double itemPrice) {
+        return this.totalAmountDeposited >= itemPrice;
     }
 
     private boolean isTotalAmountDepositedLessThanItemPrice(double itemPrice) {
