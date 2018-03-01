@@ -17,7 +17,6 @@ public class VendingMachine {
 
     private String stateMessage = Constants.INSERT_COIN;
 
-    private double totalAmountDeposited = 0;
     private double coinReturnAmount;
     private double moneyInMachine = 5.00;
 
@@ -29,13 +28,13 @@ public class VendingMachine {
     public double determineCoinValueBasedOnWeightAndSizeByDiameter(int weight, int diameter) {
         if (weight == ONE_GRAM && diameter == ONE_MILLIMETER) {
             this.moneyHandler.setCoinValue(0.25);
-            this.incrementTotalAmountDepositedByCoinValue();
+            this.moneyHandler.incrementTotalAmountDepositedByCoinValue();
         } else if (weight == TWO_GRAMS && diameter == TWO_MILLIMETERS) {
             this.moneyHandler.setCoinValue(0.10);
-            this.incrementTotalAmountDepositedByCoinValue();
+            this.moneyHandler.incrementTotalAmountDepositedByCoinValue();
         } else if (weight == THREE_GRAMS && diameter == THREE_MILLIMETERS) {
             this.moneyHandler.setCoinValue(0.05);
-            this.incrementTotalAmountDepositedByCoinValue();
+            this.moneyHandler.incrementTotalAmountDepositedByCoinValue();
         } else {
             this.moneyHandler.setCoinValue(0.01);
             this.coinReturnAmount += this.moneyHandler.getCoinValue();
@@ -55,7 +54,7 @@ public class VendingMachine {
             this.btnHandler.setWasCandyButtonPressed(true);
             this.dispense(ItemHandler.CANDY_ITEM_ID);
         } else {
-            this.coinReturnAmount += this.totalAmountDeposited;
+            this.coinReturnAmount += this.moneyHandler.getTotalAmountDeposited();
             this.btnHandler.setWasReturnButtonPressed(true);
             this.setStateMessage(Constants.INSERT_COIN);
         }
@@ -99,11 +98,11 @@ public class VendingMachine {
     }
 
     private boolean isTotalDepositedGreaterThanOrEqualToItemPrice(double itemPrice) {
-        return this.totalAmountDeposited >= itemPrice;
+        return this.moneyHandler.getTotalAmountDeposited() >= itemPrice;
     }
 
     private boolean isTotalAmountDepositedLessThanItemPrice(double itemPrice) {
-        return this.totalAmountDeposited < itemPrice;
+        return this.moneyHandler.getTotalAmountDeposited() < itemPrice;
     }
 
     private String convertDoubleToString(double itemPrice) {
@@ -111,13 +110,13 @@ public class VendingMachine {
     }
 
     private void dispenseFlow(double itemPrice) {
-        this.makeChange(itemPrice);
+        this.moneyHandler.makeChange(itemPrice);
         this.incrementCoinReturnAmount();
         this.setStateMessage(Constants.THANK_YOU);
     }
 
     private void incrementCoinReturnAmount() {
-        this.coinReturnAmount += this.totalAmountDeposited;
+        this.coinReturnAmount += this.moneyHandler.getTotalAmountDeposited();
     }
 
     private boolean doWeHaveItemInStock(String itemName) {
@@ -138,22 +137,16 @@ public class VendingMachine {
             this.setStateMessage(Constants.SOLD_OUT);
             this.btnHandler.incrementButtonCounter();
         } else {
-            this.setStateMessage(this.convertDoubleToString(this.totalAmountDeposited));
+            this.setStateMessage(this.convertDoubleToString(this.moneyHandler.getTotalAmountDeposited()));
             this.btnHandler.resetButtonCounter();
         }
         return false;
     }
 
-    private void incrementTotalAmountDepositedByCoinValue() {
-        this.totalAmountDeposited += this.moneyHandler.getCoinValue();
-    }
+
 
     public double getCoinReturnAmount() {
         return this.coinReturnAmount;
-    }
-
-    public double getTotalAmountDeposited() {
-        return this.totalAmountDeposited;
     }
 
     private void setStateMessage(String stateMessage) {
@@ -172,14 +165,10 @@ public class VendingMachine {
         } else if (this.enoughMoneyInMachineForChange()) {
             this.setStateMessage(Constants.EXACT_CHANGE);
             return this.stateMessage;
-        } else if (this.totalAmountDeposited > 0) {
-            return this.convertDoubleToString(this.totalAmountDeposited);
+        } else if (this.moneyHandler.getTotalAmountDeposited() > 0) {
+            return this.convertDoubleToString(this.moneyHandler.getTotalAmountDeposited());
         }
         return this.stateMessage;
-    }
-
-    private void makeChange(double itemPrice) {
-        this.totalAmountDeposited = BigDecimal.valueOf(this.totalAmountDeposited).subtract(BigDecimal.valueOf(itemPrice)).doubleValue();
     }
 
     public void setMoneyInMachine(double moneyInMachine) {
@@ -192,5 +181,9 @@ public class VendingMachine {
 
     public ItemHandler getItemHandler() {
         return itemHandler;
+    }
+
+    public MoneyHandler getMoneyHandler() {
+        return moneyHandler;
     }
 }

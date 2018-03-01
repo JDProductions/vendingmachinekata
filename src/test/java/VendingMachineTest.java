@@ -9,6 +9,7 @@ public class VendingMachineTest {
 
     private final VendingMachine vendingMachine = new VendingMachine();
     private final ItemHandler itemHandler = vendingMachine.getItemHandler();
+    private final MoneyHandler moneyHandler = vendingMachine.getMoneyHandler();
 
     @Test
     public void whenVendingMachineIsIdleDisplayMessageShouldReadInsertCoin() {
@@ -76,7 +77,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
 
 
-        assertEquals(0.50, vendingMachine.getTotalAmountDeposited());
+        assertEquals(0.50, moneyHandler.getTotalAmountDeposited());
 
     }
 
@@ -90,7 +91,7 @@ public class VendingMachineTest {
         DEPOSIT_PENNY();
 
 
-        assertEquals(0.65, vendingMachine.getTotalAmountDeposited());
+        assertEquals(0.65, moneyHandler.getTotalAmountDeposited());
 
     }
 
@@ -124,7 +125,7 @@ public class VendingMachineTest {
 
         vendingMachine.pressedButton("Chips");
 
-        assertEquals(0.0, vendingMachine.getTotalAmountDeposited());
+        assertEquals(0.0, moneyHandler.getTotalAmountDeposited());
     }
 
     @Test
