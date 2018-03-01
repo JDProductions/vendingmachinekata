@@ -15,20 +15,6 @@ public class VendingMachine {
     private final int THREE_GRAMS = 3;
     private final int THREE_MILLIMETERS = 3;
 
-    private final int CHIPS_ITEM_ID = 1;
-    private int chipsInStock = 5;
-    private double chipsPrice = 0.50;
-
-    private final double colaPrice = 1.00;
-    private final int COLA_ITEM_ID = 2;
-    private int colaInStock = 5;
-
-    private final double candyPrice = 0.65;
-    private final int CANDY_ITEM_ID = 3;
-    private int candyInStock = 5;
-
-
-
     private String stateMessage = Constants.INSERT_COIN;
 
     private double coinValue = 0;
@@ -37,6 +23,7 @@ public class VendingMachine {
     private double moneyInMachine = 5.00;
 
     private ButtonHandler btnHandler = new ButtonHandler();
+    private ItemHandler itemHandler = new ItemHandler();
 
 
     public double determineCoinValueBasedOnWeightAndSizeByDiameter(int weight, int diameter) {
@@ -60,13 +47,13 @@ public class VendingMachine {
     public void pressedButton(String item) {
         if (item.equals(Constants.CHIPS)) {
             this.btnHandler.setWasChipButtonPressed(true);
-            this.dispense(CHIPS_ITEM_ID);
+            this.dispense(ItemHandler.CHIPS_ITEM_ID);
         } else if (item.equals(Constants.COLA)) {
             this.btnHandler.setWasColaButtonPressed(true);
-            this.dispense(COLA_ITEM_ID);
+            this.dispense(ItemHandler.COLA_ITEM_ID);
         } else if (item.equals(Constants.CANDY)) {
             this.btnHandler.setWasCandyButtonPressed(true);
-            this.dispense(CANDY_ITEM_ID);
+            this.dispense(ItemHandler.CANDY_ITEM_ID);
         } else {
             this.coinReturnAmount += this.totalAmountDeposited;
             this.btnHandler.setWasReturnButtonPressed(true);
@@ -76,32 +63,32 @@ public class VendingMachine {
 
     private void dispense(int itemID) {
         switch (itemID) {
-            case CHIPS_ITEM_ID:
-                if (this.isTotalAmountDepositedLessThanItemPrice(this.chipsPrice)) {
-                    this.setStateMessage(Constants.PRICE + this.convertDoubleToString(this.chipsPrice));
-                } else if (this.doWeHaveItemInStock(Constants.CHIPS) && this.isTotalDepositedGreaterThanOrEqualToItemPrice(this.chipsPrice)) {
-                    this.chipsInStock -= 1;
-                    this.dispenseFlow(this.chipsPrice);
+            case ItemHandler.CHIPS_ITEM_ID:
+                if (this.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getChipsPrice())) {
+                    this.setStateMessage(Constants.PRICE + this.convertDoubleToString(this.itemHandler.getChipsPrice()));
+                } else if (this.doWeHaveItemInStock(Constants.CHIPS) && this.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getChipsPrice())) {
+                    this.itemHandler.reduceItemInventory(1);
+                    this.dispenseFlow(this.itemHandler.getChipsPrice());
                 }
                 break;
 
-            case COLA_ITEM_ID:
-                if (this.isTotalAmountDepositedLessThanItemPrice(this.colaPrice)) {
-                    this.setStateMessage(Constants.PRICE + this.convertDoubleToString(this.colaPrice));
+            case ItemHandler.COLA_ITEM_ID:
+                if (this.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getColaPrice())) {
+                    this.setStateMessage(Constants.PRICE + this.convertDoubleToString(this.itemHandler.getColaPrice()));
                 }
-                if (this.doWeHaveItemInStock(Constants.COLA) && this.isTotalDepositedGreaterThanOrEqualToItemPrice(this.colaPrice)) {
-                    this.colaInStock -= 1;
-                    this.dispenseFlow(this.colaPrice);
+                if (this.doWeHaveItemInStock(Constants.COLA) && this.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getColaPrice())) {
+                    this.itemHandler.reduceItemInventory(2);
+                    this.dispenseFlow(this.itemHandler.getColaPrice());
                 }
                 break;
 
-            case CANDY_ITEM_ID:
-                if (this.isTotalAmountDepositedLessThanItemPrice(this.candyPrice)) {
-                    this.setStateMessage(Constants.PRICE + this.convertDoubleToString(this.candyPrice));
+            case ItemHandler.CANDY_ITEM_ID:
+                if (this.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getCandyPrice())) {
+                    this.setStateMessage(Constants.PRICE + this.convertDoubleToString(this.itemHandler.getCandyPrice()));
                 }
-                if (this.doWeHaveItemInStock(Constants.CANDY) && this.isTotalDepositedGreaterThanOrEqualToItemPrice(this.candyPrice)) {
-                    this.candyInStock -= 1;
-                    this.dispenseFlow(this.candyPrice);
+                if (this.doWeHaveItemInStock(Constants.CANDY) && this.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getCandyPrice())) {
+                    this.itemHandler.reduceItemInventory(3);
+                    this.dispenseFlow(this.itemHandler.getCandyPrice());
                 }
                 break;
 
@@ -135,11 +122,11 @@ public class VendingMachine {
 
     private boolean doWeHaveItemInStock(String itemName) {
         if (itemName.equals(Constants.CHIPS)) {
-            return this.evaluator(this.chipsInStock > 0);
+            return this.evaluator(this.itemHandler.getChipsInStock() > 0);
         } else if (itemName.equals(Constants.COLA)) {
-            return this.evaluator(this.colaInStock > 0);
+            return this.evaluator(this.itemHandler.getColaInStock() > 0);
         } else if (itemName.equals(Constants.CANDY)) {
-            return this.evaluator(this.candyInStock > 0);
+            return this.evaluator(this.itemHandler.getCandyInStock() > 0);
         }
         return false;
     }
@@ -199,36 +186,15 @@ public class VendingMachine {
         this.totalAmountDeposited = BigDecimal.valueOf(this.totalAmountDeposited).subtract(BigDecimal.valueOf(itemPrice)).doubleValue();
     }
 
-
-    public int getChipsInStock() {
-        return this.chipsInStock;
-    }
-
-    public void setChipsInStock(int numberInStock) {
-        this.chipsInStock = numberInStock;
-    }
-
-    public int getColasInStock() {
-        return this.colaInStock;
-    }
-
-    public void setColaInStock(int numberInStock) {
-        this.colaInStock = numberInStock;
-    }
-
-    public int getCandyInStock() {
-        return candyInStock;
-    }
-
-    public void setCandyInStock(int numberInStock) {
-        this.candyInStock = numberInStock;
-    }
-
     public void setMoneyInMachine(double moneyInMachine) {
         this.moneyInMachine = moneyInMachine;
     }
 
     private boolean enoughMoneyInMachineForChange() {
-        return moneyInMachine < this.chipsPrice || moneyInMachine < this.colaPrice || moneyInMachine < this.candyPrice;
+        return moneyInMachine < this.itemHandler.getChipsPrice() || moneyInMachine < this.itemHandler.getColaPrice() || moneyInMachine < this.itemHandler.getCandyPrice();
+    }
+
+    public ItemHandler getItemHandler() {
+        return itemHandler;
     }
 }

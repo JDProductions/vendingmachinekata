@@ -8,6 +8,7 @@ import static junit.framework.Assert.assertEquals;
 public class VendingMachineTest {
 
     private final VendingMachine vendingMachine = new VendingMachine();
+    private final ItemHandler itemHandler = vendingMachine.getItemHandler();
 
     @Test
     public void whenVendingMachineIsIdleDisplayMessageShouldReadInsertCoin() {
@@ -113,7 +114,7 @@ public class VendingMachineTest {
         vendingMachine.pressedButton("Chips");
 
         // There are 5 bags of chips in stock, I am now expecting 4 bags to be in stock meaning one of the bags has been dispensed.
-        assertEquals(4, vendingMachine.getChipsInStock());
+        assertEquals(4, itemHandler.getChipsInStock());
     }
 
     @Test
@@ -160,7 +161,7 @@ public class VendingMachineTest {
         vendingMachine.pressedButton("Cola");
 
         // There are 5 cola's in stock, I am now expecting 4 cola's to be in stock meaning one of the cola's has been dispensed.
-        assertEquals(4, vendingMachine.getColasInStock());
+        assertEquals(4, itemHandler.getColaInStock());
     }
 
     @Test
@@ -199,7 +200,7 @@ public class VendingMachineTest {
         vendingMachine.pressedButton("Candy");
 
         // There are 5 pieces of candy in stock, I am now expecting 4 pieces of candy to be in stock meaning one of the pieces of candy has been dispensed.
-        assertEquals(4, vendingMachine.getCandyInStock());
+        assertEquals(4, itemHandler.getCandyInStock());
     }
 
     @Test
@@ -315,7 +316,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
 
-        vendingMachine.setChipsInStock(0);
+        itemHandler.setChipsInStock(0);
         vendingMachine.pressedButton("Chips");
 
         assertEquals("SOLD OUT", vendingMachine.getStateMessage());
@@ -326,7 +327,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
 
-        vendingMachine.setChipsInStock(0);
+        itemHandler.setChipsInStock(0);
         vendingMachine.pressedButton("Chips");
         vendingMachine.pressedButton("Chips");
 
@@ -340,7 +341,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
 
-        vendingMachine.setColaInStock(0);
+        itemHandler.setColaInStock(0);
         vendingMachine.pressedButton("Cola");
 
         assertEquals("SOLD OUT", vendingMachine.getStateMessage());
@@ -353,7 +354,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
 
-        vendingMachine.setColaInStock(0);
+        itemHandler.setColaInStock(0);
         vendingMachine.pressedButton("Cola");
         vendingMachine.pressedButton("Cola");
 
@@ -367,7 +368,7 @@ public class VendingMachineTest {
         DEPOSIT_DIME();
         DEPOSIT_NICKEL();
 
-        vendingMachine.setCandyInStock(0);
+        itemHandler.setCandyInStock(0);
         vendingMachine.pressedButton("Candy");
 
         assertEquals("SOLD OUT", vendingMachine.getStateMessage());
@@ -380,7 +381,7 @@ public class VendingMachineTest {
         DEPOSIT_DIME();
         DEPOSIT_NICKEL();
 
-        vendingMachine.setCandyInStock(0);
+        itemHandler.setCandyInStock(0);
         vendingMachine.pressedButton("Candy");
         vendingMachine.pressedButton("Candy");
 
