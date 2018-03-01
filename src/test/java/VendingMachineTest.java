@@ -66,9 +66,9 @@ public class VendingMachineTest {
     @Test
     public void whenIInsertAPennyTheCoinReturnShouldReturnTheValueOfAPennyWhichWasInserted() {
         DEPOSIT_PENNY();
-        vendingMachine.getCoinReturnAmount();
+        moneyHandler.getCoinReturnAmount();
 
-        assertEquals(0.01, vendingMachine.getCoinReturnAmount());
+        assertEquals(0.01, moneyHandler.getCoinReturnAmount());
     }
 
     @Test
@@ -237,7 +237,7 @@ public class VendingMachineTest {
 
         vendingMachine.pressedButton("Chips");
 
-        assertEquals(.5, vendingMachine.getCoinReturnAmount());
+        assertEquals(.5, moneyHandler.getCoinReturnAmount());
     }
 
     @Test
@@ -263,7 +263,7 @@ public class VendingMachineTest {
 
         vendingMachine.pressedButton("Cola");
 
-        assertEquals(.25, vendingMachine.getCoinReturnAmount());
+        assertEquals(.25, moneyHandler.getCoinReturnAmount());
     }
 
     @Test
@@ -288,7 +288,7 @@ public class VendingMachineTest {
 
         vendingMachine.pressedButton("Candy");
 
-        assertEquals(.05, vendingMachine.getCoinReturnAmount());
+        assertEquals(.05, moneyHandler.getCoinReturnAmount());
     }
 
     @Test
@@ -299,7 +299,7 @@ public class VendingMachineTest {
 
         vendingMachine.pressedButton("Return Coin");
 
-        assertEquals(.6, vendingMachine.getCoinReturnAmount());
+        assertEquals(.6, moneyHandler.getCoinReturnAmount());
     }
 
     @Test

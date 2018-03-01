@@ -2,8 +2,6 @@
 //  Copyright © 2018 VendingMachineKata. All rights reserved.
 
 
-import java.math.BigDecimal;
-
 public class VendingMachine {
     /* I decided to not make the item prices constants because when the owner of this
        "machine" wants to update the price it will be possible  */
@@ -17,7 +15,6 @@ public class VendingMachine {
 
     private String stateMessage = Constants.INSERT_COIN;
 
-    private double coinReturnAmount;
     private double moneyInMachine = 5.00;
 
     private ButtonHandler btnHandler = new ButtonHandler();
@@ -37,7 +34,7 @@ public class VendingMachine {
             this.moneyHandler.incrementTotalAmountDepositedByCoinValue();
         } else {
             this.moneyHandler.setCoinValue(0.01);
-            this.coinReturnAmount += this.moneyHandler.getCoinValue();
+            this.moneyHandler.incrementCoinReturnAmountByCoinValue();
         }
         return this.moneyHandler.getCoinValue();
 
@@ -54,7 +51,7 @@ public class VendingMachine {
             this.btnHandler.setWasCandyButtonPressed(true);
             this.dispense(ItemHandler.CANDY_ITEM_ID);
         } else {
-            this.coinReturnAmount += this.moneyHandler.getTotalAmountDeposited();
+            this.moneyHandler.incrementCoinReturnAmountByTotalDeposited();
             this.btnHandler.setWasReturnButtonPressed(true);
             this.setStateMessage(Constants.INSERT_COIN);
         }
@@ -111,13 +108,10 @@ public class VendingMachine {
 
     private void dispenseFlow(double itemPrice) {
         this.moneyHandler.makeChange(itemPrice);
-        this.incrementCoinReturnAmount();
+        this.moneyHandler.incrementCoinReturnAmountByTotalDeposited();
         this.setStateMessage(Constants.THANK_YOU);
     }
 
-    private void incrementCoinReturnAmount() {
-        this.coinReturnAmount += this.moneyHandler.getTotalAmountDeposited();
-    }
 
     private boolean doWeHaveItemInStock(String itemName) {
         if (itemName.equals(Constants.CHIPS)) {
@@ -143,11 +137,6 @@ public class VendingMachine {
         return false;
     }
 
-
-
-    public double getCoinReturnAmount() {
-        return this.coinReturnAmount;
-    }
 
     private void setStateMessage(String stateMessage) {
         this.stateMessage = stateMessage;

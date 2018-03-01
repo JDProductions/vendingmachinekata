@@ -3,8 +3,11 @@ import java.math.BigDecimal;
 public class MoneyHandler {
 
     private double coinValue = 0;
-
     private double totalAmountDeposited = 0;
+
+
+    private double coinReturnAmount;
+
 
 
     void setCoinValue(double coinValue) {
@@ -13,6 +16,10 @@ public class MoneyHandler {
 
     public double getCoinValue() {
         return coinValue;
+    }
+
+    public double getCoinReturnAmount() {
+        return coinReturnAmount;
     }
 
     public double getTotalAmountDeposited() {
@@ -25,6 +32,14 @@ public class MoneyHandler {
 
     public void makeChange(double itemPrice) {
         this.totalAmountDeposited = BigDecimal.valueOf(this.getTotalAmountDeposited()).subtract(BigDecimal.valueOf(itemPrice)).doubleValue();
+    }
+
+    public void incrementCoinReturnAmountByCoinValue() {
+        this.coinReturnAmount += this.getCoinValue();
+    }
+
+    public void incrementCoinReturnAmountByTotalDeposited() {
+        this.coinReturnAmount += this.getTotalAmountDeposited();
     }
 
 }
