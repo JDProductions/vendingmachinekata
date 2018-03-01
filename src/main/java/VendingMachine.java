@@ -17,30 +17,30 @@ public class VendingMachine {
 
     private String stateMessage = Constants.INSERT_COIN;
 
-    private double coinValue = 0;
     private double totalAmountDeposited = 0;
     private double coinReturnAmount;
     private double moneyInMachine = 5.00;
 
     private ButtonHandler btnHandler = new ButtonHandler();
     private ItemHandler itemHandler = new ItemHandler();
+    private MoneyHandler moneyHandler = new MoneyHandler();
 
 
     public double determineCoinValueBasedOnWeightAndSizeByDiameter(int weight, int diameter) {
         if (weight == ONE_GRAM && diameter == ONE_MILLIMETER) {
-            this.setCoinValue(0.25);
+            this.moneyHandler.setCoinValue(0.25);
             this.incrementTotalAmountDepositedByCoinValue();
         } else if (weight == TWO_GRAMS && diameter == TWO_MILLIMETERS) {
-            this.setCoinValue(0.10);
+            this.moneyHandler.setCoinValue(0.10);
             this.incrementTotalAmountDepositedByCoinValue();
         } else if (weight == THREE_GRAMS && diameter == THREE_MILLIMETERS) {
-            this.setCoinValue(0.05);
+            this.moneyHandler.setCoinValue(0.05);
             this.incrementTotalAmountDepositedByCoinValue();
         } else {
-            this.setCoinValue(0.01);
-            this.coinReturnAmount += this.coinValue;
+            this.moneyHandler.setCoinValue(0.01);
+            this.coinReturnAmount += this.moneyHandler.getCoinValue();
         }
-        return this.coinValue;
+        return this.moneyHandler.getCoinValue();
 
     }
 
@@ -145,7 +145,7 @@ public class VendingMachine {
     }
 
     private void incrementTotalAmountDepositedByCoinValue() {
-        this.totalAmountDeposited += this.coinValue;
+        this.totalAmountDeposited += this.moneyHandler.getCoinValue();
     }
 
     public double getCoinReturnAmount() {
@@ -154,10 +154,6 @@ public class VendingMachine {
 
     public double getTotalAmountDeposited() {
         return this.totalAmountDeposited;
-    }
-
-    private void setCoinValue(double coinValue) {
-        this.coinValue = coinValue;
     }
 
     private void setStateMessage(String stateMessage) {
