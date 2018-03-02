@@ -32,39 +32,43 @@ public class VendingMachine {
         switch (itemID) {
             case ItemHandler.CHIPS_ITEM_ID:
                 if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getChipsPrice())) {
-                    this.display.setStateMessage(Constants.PRICE + this.helper.convertDoubleToString(this.itemHandler.getChipsPrice()));
+                    displayItemPrice(this.itemHandler.getChipsPrice());
                 } else if (this.itemHandler.doWeHaveItemInStock(Constants.CHIPS) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getChipsPrice())) {
-                    this.itemHandler.reduceItemInventory(ItemHandler.CHIPS_ITEM_ID);
-                    this.moneyHandler.processTransaction(this.itemHandler.getChipsPrice());
-                    this.display.setStateMessage(Constants.THANK_YOU);
+                    completeTransaction(ItemHandler.CHIPS_ITEM_ID, this.itemHandler.getChipsPrice());
                 }
                 break;
 
             case ItemHandler.COLA_ITEM_ID:
                 if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getColaPrice())) {
-                    this.display.setStateMessage(Constants.PRICE + this.helper.convertDoubleToString(this.itemHandler.getColaPrice()));
+                    displayItemPrice(this.itemHandler.getColaPrice());
                 }
                 else if (this.itemHandler.doWeHaveItemInStock(Constants.COLA) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getColaPrice())) {
-                    this.itemHandler.reduceItemInventory(ItemHandler.COLA_ITEM_ID);
-                    this.moneyHandler.processTransaction(this.itemHandler.getColaPrice());
-                    this.display.setStateMessage(Constants.THANK_YOU);
+                    completeTransaction(ItemHandler.COLA_ITEM_ID, this.itemHandler.getColaPrice());
                 }
                 break;
 
             case ItemHandler.CANDY_ITEM_ID:
                 if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getCandyPrice())) {
-                    this.display.setStateMessage(Constants.PRICE + this.helper.convertDoubleToString(this.itemHandler.getCandyPrice()));
+                    displayItemPrice(this.itemHandler.getCandyPrice());
                 }
                 else if (this.itemHandler.doWeHaveItemInStock(Constants.CANDY) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getCandyPrice())) {
-                    this.itemHandler.reduceItemInventory(ItemHandler.CANDY_ITEM_ID);
-                    this.moneyHandler.processTransaction(this.itemHandler.getCandyPrice());
-                    this.display.setStateMessage(Constants.THANK_YOU);
+                    completeTransaction(ItemHandler.CANDY_ITEM_ID, this.itemHandler.getCandyPrice());
                 }
                 break;
 
             default:
                 this.display.setStateMessage(Constants.ERROR);
         }
+    }
+
+    private void displayItemPrice(double itemPrice) {
+        this.display.setStateMessage(Constants.PRICE + this.helper.convertDoubleToString(itemPrice));
+    }
+
+    private void completeTransaction(int itemID, double itemPrice) {
+        this.itemHandler.reduceItemInventory(itemID);
+        this.moneyHandler.processTransaction(itemPrice);
+        this.display.setStateMessage(Constants.THANK_YOU);
     }
 
     public ItemHandler getItemHandler() {
