@@ -13,12 +13,13 @@ public class VendingMachine {
     private final int THREE_GRAMS = 3;
     private final int THREE_MILLIMETERS = 3;
 
-    private String stateMessage = Constants.INSERT_COIN;
-
 
     private ButtonHandler btnHandler = new ButtonHandler();
     private ItemHandler itemHandler = new ItemHandler();
     private MoneyHandler moneyHandler = new MoneyHandler();
+
+    private DisplayHandler display = new DisplayHandler(this.btnHandler,moneyHandler);
+    private Helper helper = new Helper();
 
 
     public double determineCoinValueBasedOnWeightAndSizeByDiameter(int weight, int diameter) {
@@ -52,7 +53,7 @@ public class VendingMachine {
         } else {
             this.moneyHandler.incrementCoinReturnAmountByTotalDeposited();
             this.btnHandler.setWasReturnButtonPressed(true);
-            this.setStateMessage(Constants.INSERT_COIN);
+            this.display.setStateMessage(Constants.INSERT_COIN);
         }
     }
 
@@ -60,7 +61,7 @@ public class VendingMachine {
         switch (itemID) {
             case ItemHandler.CHIPS_ITEM_ID:
                 if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getChipsPrice())) {
-                    this.setStateMessage(Constants.PRICE + this.convertDoubleToString(this.itemHandler.getChipsPrice()));
+                    this.display.setStateMessage(Constants.PRICE + this.helper.convertDoubleToString(this.itemHandler.getChipsPrice()));
                 } else if (this.doWeHaveItemInStock(Constants.CHIPS) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getChipsPrice())) {
                     this.itemHandler.reduceItemInventory(ItemHandler.CHIPS_ITEM_ID);
                     this.dispenseFlow(this.itemHandler.getChipsPrice());
@@ -69,7 +70,7 @@ public class VendingMachine {
 
             case ItemHandler.COLA_ITEM_ID:
                 if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getColaPrice())) {
-                    this.setStateMessage(Constants.PRICE + this.convertDoubleToString(this.itemHandler.getColaPrice()));
+                    this.display.setStateMessage(Constants.PRICE + this.helper.convertDoubleToString(this.itemHandler.getColaPrice()));
                 }
                 if (this.doWeHaveItemInStock(Constants.COLA) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getColaPrice())) {
                     this.itemHandler.reduceItemInventory(ItemHandler.COLA_ITEM_ID);
@@ -79,7 +80,7 @@ public class VendingMachine {
 
             case ItemHandler.CANDY_ITEM_ID:
                 if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getCandyPrice())) {
-                    this.setStateMessage(Constants.PRICE + this.convertDoubleToString(this.itemHandler.getCandyPrice()));
+                    this.display.setStateMessage(Constants.PRICE + this.helper.convertDoubleToString(this.itemHandler.getCandyPrice()));
                 }
                 if (this.doWeHaveItemInStock(Constants.CANDY) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getCandyPrice())) {
                     this.itemHandler.reduceItemInventory(ItemHandler.CANDY_ITEM_ID);
@@ -89,19 +90,14 @@ public class VendingMachine {
 
             default:
                 // I added this default case for good measure, if the program gets here, something went seriously wrong!!!
-                this.setStateMessage(Constants.ERROR);
+                this.display.setStateMessage(Constants.ERROR);
         }
-    }
-
-
-    private String convertDoubleToString(double itemPrice) {
-        return Double.toString(itemPrice);
     }
 
     private void dispenseFlow(double itemPrice) {
         this.moneyHandler.makeChange(itemPrice);
         this.moneyHandler.incrementCoinReturnAmountByTotalDeposited();
-        this.setStateMessage(Constants.THANK_YOU);
+        this.display.setStateMessage(Constants.THANK_YOU);
     }
 
 
@@ -120,37 +116,15 @@ public class VendingMachine {
         if (b) {
             return true;
         } else if (this.btnHandler.getSoldOutButtonCounter() == 0) {
-            this.setStateMessage(Constants.SOLD_OUT);
+            this.display.setStateMessage(Constants.SOLD_OUT);
             this.btnHandler.incrementButtonCounter();
         } else {
-            this.setStateMessage(this.convertDoubleToString(this.moneyHandler.getTotalAmountDeposited()));
+            this.display.setStateMessage(this.helper.convertDoubleToString(this.moneyHandler.getTotalAmountDeposited()));
             this.btnHandler.resetButtonCounter();
         }
         return false;
     }
 
-
-    private void setStateMessage(String stateMessage) {
-        this.stateMessage = stateMessage;
-    }
-
-    public String getStateMessage() {
-        if (this.btnHandler.wasChipButtonPressed()) {
-            return this.stateMessage;
-        } else if (this.btnHandler.wasColaButtonPressed()) {
-            return this.stateMessage;
-        } else if (this.btnHandler.wasCandyButtonPressed()) {
-            return this.stateMessage;
-        } else if (this.btnHandler.wasReturnButtonPressed()) {
-            return this.stateMessage;
-        } else if (this.moneyHandler.enoughMoneyInMachineForChange()) {
-            this.setStateMessage(Constants.EXACT_CHANGE);
-            return this.stateMessage;
-        } else if (this.moneyHandler.getTotalAmountDeposited() > 0) {
-            return this.convertDoubleToString(this.moneyHandler.getTotalAmountDeposited());
-        }
-        return this.stateMessage;
-    }
 
     public ItemHandler getItemHandler() {
         return itemHandler;
@@ -158,5 +132,9 @@ public class VendingMachine {
 
     public MoneyHandler getMoneyHandler() {
         return moneyHandler;
+    }
+
+    public DisplayHandler getDisplay() {
+        return display;
     }
 }
