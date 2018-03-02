@@ -64,4 +64,23 @@ public class MoneyHandler {
         this.makeChange(itemPrice);
         this.incrementCoinReturnAmountByTotalDeposited();
     }
+
+
+    public double determineCoinValueBasedOnWeightAndSizeByDiameter(int weight, int diameter) {
+        if (weight == Constants.ONE_GRAM && diameter == Constants.ONE_MILLIMETER) {
+            this.setCoinValue(0.25);
+            this.incrementTotalAmountDepositedByCoinValue();
+        } else if (weight == Constants.TWO_GRAMS && diameter == Constants.TWO_MILLIMETERS) {
+            this.setCoinValue(0.10);
+            this.incrementTotalAmountDepositedByCoinValue();
+        } else if (weight == Constants.THREE_GRAMS && diameter == Constants.THREE_MILLIMETERS) {
+            this.setCoinValue(0.05);
+            this.incrementTotalAmountDepositedByCoinValue();
+        } else {
+            this.setCoinValue(0.01);
+            this.incrementCoinReturnAmountByCoinValue();
+        }
+        return this.getCoinValue();
+
+    }
 }

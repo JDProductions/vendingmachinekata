@@ -3,40 +3,13 @@
 
 
 public class VendingMachine {
-    private final int ONE_GRAM = 1;
-    private final int ONE_MILLIMETER = 1;
-    private final int TWO_GRAMS = 2;
-    private final int TWO_MILLIMETERS = 2;
-    private final int THREE_GRAMS = 3;
-    private final int THREE_MILLIMETERS = 3;
-
-
     private ButtonHandler btnHandler = new ButtonHandler();
     private MoneyHandler moneyHandler = new MoneyHandler();
-
     private DisplayHandler display = new DisplayHandler(this.btnHandler,moneyHandler);
     private ItemHandler itemHandler = new ItemHandler(this.btnHandler,this.display,this.moneyHandler);
 
     private Helper helper = new Helper();
 
-
-    public double determineCoinValueBasedOnWeightAndSizeByDiameter(int weight, int diameter) {
-        if (weight == ONE_GRAM && diameter == ONE_MILLIMETER) {
-            this.moneyHandler.setCoinValue(0.25);
-            this.moneyHandler.incrementTotalAmountDepositedByCoinValue();
-        } else if (weight == TWO_GRAMS && diameter == TWO_MILLIMETERS) {
-            this.moneyHandler.setCoinValue(0.10);
-            this.moneyHandler.incrementTotalAmountDepositedByCoinValue();
-        } else if (weight == THREE_GRAMS && diameter == THREE_MILLIMETERS) {
-            this.moneyHandler.setCoinValue(0.05);
-            this.moneyHandler.incrementTotalAmountDepositedByCoinValue();
-        } else {
-            this.moneyHandler.setCoinValue(0.01);
-            this.moneyHandler.incrementCoinReturnAmountByCoinValue();
-        }
-        return this.moneyHandler.getCoinValue();
-
-    }
 
     public void pressedButton(String item) {
         if (item.equals(Constants.CHIPS)) {

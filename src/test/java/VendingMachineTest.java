@@ -19,19 +19,19 @@ public class VendingMachineTest {
     }
 
     private double DEPOSIT_QUARTER() {
-        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(1, 1);
+        return moneyHandler.determineCoinValueBasedOnWeightAndSizeByDiameter(1, 1);
     }
 
     private double DEPOSIT_NICKEL() {
-        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(3, 3);
+        return moneyHandler.determineCoinValueBasedOnWeightAndSizeByDiameter(3, 3);
     }
 
     private double DEPOSIT_PENNY() {
-        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(4, 4);
+        return moneyHandler.determineCoinValueBasedOnWeightAndSizeByDiameter(4, 4);
     }
 
     private double DEPOSIT_DIME() {
-        return vendingMachine.determineCoinValueBasedOnWeightAndSizeByDiameter(2, 2);
+        return moneyHandler.determineCoinValueBasedOnWeightAndSizeByDiameter(2, 2);
     }
 
     @Test
