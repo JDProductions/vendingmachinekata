@@ -31,33 +31,27 @@ public class VendingMachine {
     private void dispense(int itemID) {
         switch (itemID) {
             case ItemHandler.CHIPS_ITEM_ID:
-                if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getChipsPrice())) {
-                    displayItemPrice(this.itemHandler.getChipsPrice());
-                } else if (this.itemHandler.doWeHaveItemInStock(Constants.CHIPS) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getChipsPrice())) {
-                    completeTransaction(ItemHandler.CHIPS_ITEM_ID, this.itemHandler.getChipsPrice());
-                }
+                completeTransactionAndUpdateDisplay(this.itemHandler.getChipsPrice(), Constants.CHIPS, ItemHandler.CHIPS_ITEM_ID);
                 break;
 
             case ItemHandler.COLA_ITEM_ID:
-                if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getColaPrice())) {
-                    displayItemPrice(this.itemHandler.getColaPrice());
-                }
-                else if (this.itemHandler.doWeHaveItemInStock(Constants.COLA) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getColaPrice())) {
-                    completeTransaction(ItemHandler.COLA_ITEM_ID, this.itemHandler.getColaPrice());
-                }
+                completeTransactionAndUpdateDisplay(this.itemHandler.getColaPrice(), Constants.COLA, ItemHandler.COLA_ITEM_ID);
                 break;
 
             case ItemHandler.CANDY_ITEM_ID:
-                if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getCandyPrice())) {
-                    displayItemPrice(this.itemHandler.getCandyPrice());
-                }
-                else if (this.itemHandler.doWeHaveItemInStock(Constants.CANDY) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getCandyPrice())) {
-                    completeTransaction(ItemHandler.CANDY_ITEM_ID, this.itemHandler.getCandyPrice());
-                }
+                completeTransactionAndUpdateDisplay(this.itemHandler.getCandyPrice(), Constants.CANDY, ItemHandler.CANDY_ITEM_ID);
                 break;
 
             default:
                 this.display.setStateMessage(Constants.ERROR);
+        }
+    }
+
+    private void completeTransactionAndUpdateDisplay(double itemPrice, String item, int itemID) {
+        if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(itemPrice)) {
+            displayItemPrice(itemPrice);
+        } else if (this.itemHandler.doWeHaveItemInStock(item) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(itemPrice)) {
+            completeTransaction(itemID, itemPrice);
         }
     }
 
