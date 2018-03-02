@@ -3,9 +3,6 @@
 
 
 public class VendingMachine {
-    /* I decided to not make the item prices constants because when the owner of this
-       "machine" wants to update the price it will be possible  */
-
     private final int ONE_GRAM = 1;
     private final int ONE_MILLIMETER = 1;
     private final int TWO_GRAMS = 2;
@@ -65,7 +62,8 @@ public class VendingMachine {
                     this.display.setStateMessage(Constants.PRICE + this.helper.convertDoubleToString(this.itemHandler.getChipsPrice()));
                 } else if (this.itemHandler.doWeHaveItemInStock(Constants.CHIPS) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getChipsPrice())) {
                     this.itemHandler.reduceItemInventory(ItemHandler.CHIPS_ITEM_ID);
-                    this.dispenseFlow(this.itemHandler.getChipsPrice());
+                    this.moneyHandler.processTransaction(this.itemHandler.getChipsPrice());
+                    this.display.setStateMessage(Constants.THANK_YOU);
                 }
                 break;
 
@@ -73,9 +71,10 @@ public class VendingMachine {
                 if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getColaPrice())) {
                     this.display.setStateMessage(Constants.PRICE + this.helper.convertDoubleToString(this.itemHandler.getColaPrice()));
                 }
-                if (this.itemHandler.doWeHaveItemInStock(Constants.COLA) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getColaPrice())) {
+                else if (this.itemHandler.doWeHaveItemInStock(Constants.COLA) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getColaPrice())) {
                     this.itemHandler.reduceItemInventory(ItemHandler.COLA_ITEM_ID);
-                    this.dispenseFlow(this.itemHandler.getColaPrice());
+                    this.moneyHandler.processTransaction(this.itemHandler.getColaPrice());
+                    this.display.setStateMessage(Constants.THANK_YOU);
                 }
                 break;
 
@@ -83,25 +82,17 @@ public class VendingMachine {
                 if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getCandyPrice())) {
                     this.display.setStateMessage(Constants.PRICE + this.helper.convertDoubleToString(this.itemHandler.getCandyPrice()));
                 }
-                if (this.itemHandler.doWeHaveItemInStock(Constants.CANDY) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getCandyPrice())) {
+                else if (this.itemHandler.doWeHaveItemInStock(Constants.CANDY) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getCandyPrice())) {
                     this.itemHandler.reduceItemInventory(ItemHandler.CANDY_ITEM_ID);
-                    this.dispenseFlow(this.itemHandler.getCandyPrice());
+                    this.moneyHandler.processTransaction(this.itemHandler.getCandyPrice());
+                    this.display.setStateMessage(Constants.THANK_YOU);
                 }
                 break;
 
             default:
-                // I added this default case for good measure, if the program gets here, something went seriously wrong!!!
                 this.display.setStateMessage(Constants.ERROR);
         }
     }
-
-    private void dispenseFlow(double itemPrice) {
-        this.moneyHandler.makeChange(itemPrice);
-        this.moneyHandler.incrementCoinReturnAmountByTotalDeposited();
-        this.display.setStateMessage(Constants.THANK_YOU);
-    }
-
-
 
     public ItemHandler getItemHandler() {
         return itemHandler;

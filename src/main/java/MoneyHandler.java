@@ -11,6 +11,7 @@ public class MoneyHandler {
 
 
 
+
     void setCoinValue(double coinValue) {
         this.coinValue = coinValue;
     }
@@ -59,4 +60,8 @@ public class MoneyHandler {
         return this.getTotalAmountDeposited() < itemPrice;
     }
 
+    public void processTransaction(double itemPrice) {
+        this.makeChange(itemPrice);
+        this.incrementCoinReturnAmountByTotalDeposited();
+    }
 }
