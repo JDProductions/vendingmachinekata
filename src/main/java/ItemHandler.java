@@ -1,4 +1,18 @@
 public class ItemHandler {
+    private  Helper helper = new Helper();
+    private ButtonHandler btnHandler;
+    private DisplayHandler display;
+    private MoneyHandler moneyHandler;
+
+    public ItemHandler(ButtonHandler btnHandler, DisplayHandler display, MoneyHandler moneyHandler) {
+        this.btnHandler = btnHandler;
+        this.display = display;
+        this.moneyHandler = moneyHandler;
+    }
+
+    public ItemHandler() {
+
+    }
 
     public static final int CHIPS_ITEM_ID = 1;
     public static final int COLA_ITEM_ID = 2;
@@ -69,5 +83,28 @@ public class ItemHandler {
     }
 
 
+    public boolean doWeHaveItemInStock(String itemName) {
+        if (itemName.equals(Constants.CHIPS)) {
+            return this.evaluateIfItemIsSoldOut(this.getChipsInStock() > 0);
+        } else if (itemName.equals(Constants.COLA)) {
+            return this.evaluateIfItemIsSoldOut(this.getColaInStock() > 0);
+        } else if (itemName.equals(Constants.CANDY)) {
+            return this.evaluateIfItemIsSoldOut(this.getCandyInStock() > 0);
+        }
+        return false;
+    }
+
+    public boolean evaluateIfItemIsSoldOut(boolean b) {
+        if (b) {
+            return true;
+        } else if (this.btnHandler.getSoldOutButtonCounter() == 0) {
+            this.display.setStateMessage(Constants.SOLD_OUT);
+            this.btnHandler.incrementButtonCounter();
+        } else {
+            this.display.setStateMessage(this.helper.convertDoubleToString(this.moneyHandler.getTotalAmountDeposited()));
+            this.btnHandler.resetButtonCounter();
+        }
+        return false;
+    }
 
 }

@@ -15,10 +15,11 @@ public class VendingMachine {
 
 
     private ButtonHandler btnHandler = new ButtonHandler();
-    private ItemHandler itemHandler = new ItemHandler();
     private MoneyHandler moneyHandler = new MoneyHandler();
 
     private DisplayHandler display = new DisplayHandler(this.btnHandler,moneyHandler);
+    private ItemHandler itemHandler = new ItemHandler(this.btnHandler,this.display,this.moneyHandler);
+
     private Helper helper = new Helper();
 
 
@@ -62,7 +63,7 @@ public class VendingMachine {
             case ItemHandler.CHIPS_ITEM_ID:
                 if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getChipsPrice())) {
                     this.display.setStateMessage(Constants.PRICE + this.helper.convertDoubleToString(this.itemHandler.getChipsPrice()));
-                } else if (this.doWeHaveItemInStock(Constants.CHIPS) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getChipsPrice())) {
+                } else if (this.itemHandler.doWeHaveItemInStock(Constants.CHIPS) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getChipsPrice())) {
                     this.itemHandler.reduceItemInventory(ItemHandler.CHIPS_ITEM_ID);
                     this.dispenseFlow(this.itemHandler.getChipsPrice());
                 }
@@ -72,7 +73,7 @@ public class VendingMachine {
                 if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getColaPrice())) {
                     this.display.setStateMessage(Constants.PRICE + this.helper.convertDoubleToString(this.itemHandler.getColaPrice()));
                 }
-                if (this.doWeHaveItemInStock(Constants.COLA) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getColaPrice())) {
+                if (this.itemHandler.doWeHaveItemInStock(Constants.COLA) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getColaPrice())) {
                     this.itemHandler.reduceItemInventory(ItemHandler.COLA_ITEM_ID);
                     this.dispenseFlow(this.itemHandler.getColaPrice());
                 }
@@ -82,7 +83,7 @@ public class VendingMachine {
                 if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getCandyPrice())) {
                     this.display.setStateMessage(Constants.PRICE + this.helper.convertDoubleToString(this.itemHandler.getCandyPrice()));
                 }
-                if (this.doWeHaveItemInStock(Constants.CANDY) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getCandyPrice())) {
+                if (this.itemHandler.doWeHaveItemInStock(Constants.CANDY) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getCandyPrice())) {
                     this.itemHandler.reduceItemInventory(ItemHandler.CANDY_ITEM_ID);
                     this.dispenseFlow(this.itemHandler.getCandyPrice());
                 }
@@ -100,30 +101,6 @@ public class VendingMachine {
         this.display.setStateMessage(Constants.THANK_YOU);
     }
 
-
-    private boolean doWeHaveItemInStock(String itemName) {
-        if (itemName.equals(Constants.CHIPS)) {
-            return this.evaluator(this.itemHandler.getChipsInStock() > 0);
-        } else if (itemName.equals(Constants.COLA)) {
-            return this.evaluator(this.itemHandler.getColaInStock() > 0);
-        } else if (itemName.equals(Constants.CANDY)) {
-            return this.evaluator(this.itemHandler.getCandyInStock() > 0);
-        }
-        return false;
-    }
-
-    private boolean evaluator(boolean b) {
-        if (b) {
-            return true;
-        } else if (this.btnHandler.getSoldOutButtonCounter() == 0) {
-            this.display.setStateMessage(Constants.SOLD_OUT);
-            this.btnHandler.incrementButtonCounter();
-        } else {
-            this.display.setStateMessage(this.helper.convertDoubleToString(this.moneyHandler.getTotalAmountDeposited()));
-            this.btnHandler.resetButtonCounter();
-        }
-        return false;
-    }
 
 
     public ItemHandler getItemHandler() {
