@@ -59,29 +59,29 @@ public class VendingMachine {
     private void dispense(int itemID) {
         switch (itemID) {
             case ItemHandler.CHIPS_ITEM_ID:
-                if (this.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getChipsPrice())) {
+                if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getChipsPrice())) {
                     this.setStateMessage(Constants.PRICE + this.convertDoubleToString(this.itemHandler.getChipsPrice()));
-                } else if (this.doWeHaveItemInStock(Constants.CHIPS) && this.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getChipsPrice())) {
+                } else if (this.doWeHaveItemInStock(Constants.CHIPS) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getChipsPrice())) {
                     this.itemHandler.reduceItemInventory(ItemHandler.CHIPS_ITEM_ID);
                     this.dispenseFlow(this.itemHandler.getChipsPrice());
                 }
                 break;
 
             case ItemHandler.COLA_ITEM_ID:
-                if (this.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getColaPrice())) {
+                if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getColaPrice())) {
                     this.setStateMessage(Constants.PRICE + this.convertDoubleToString(this.itemHandler.getColaPrice()));
                 }
-                if (this.doWeHaveItemInStock(Constants.COLA) && this.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getColaPrice())) {
+                if (this.doWeHaveItemInStock(Constants.COLA) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getColaPrice())) {
                     this.itemHandler.reduceItemInventory(ItemHandler.COLA_ITEM_ID);
                     this.dispenseFlow(this.itemHandler.getColaPrice());
                 }
                 break;
 
             case ItemHandler.CANDY_ITEM_ID:
-                if (this.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getCandyPrice())) {
+                if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(this.itemHandler.getCandyPrice())) {
                     this.setStateMessage(Constants.PRICE + this.convertDoubleToString(this.itemHandler.getCandyPrice()));
                 }
-                if (this.doWeHaveItemInStock(Constants.CANDY) && this.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getCandyPrice())) {
+                if (this.doWeHaveItemInStock(Constants.CANDY) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(this.itemHandler.getCandyPrice())) {
                     this.itemHandler.reduceItemInventory(ItemHandler.CANDY_ITEM_ID);
                     this.dispenseFlow(this.itemHandler.getCandyPrice());
                 }
@@ -93,13 +93,6 @@ public class VendingMachine {
         }
     }
 
-    private boolean isTotalDepositedGreaterThanOrEqualToItemPrice(double itemPrice) {
-        return this.moneyHandler.getTotalAmountDeposited() >= itemPrice;
-    }
-
-    private boolean isTotalAmountDepositedLessThanItemPrice(double itemPrice) {
-        return this.moneyHandler.getTotalAmountDeposited() < itemPrice;
-    }
 
     private String convertDoubleToString(double itemPrice) {
         return Double.toString(itemPrice);
