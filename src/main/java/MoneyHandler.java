@@ -4,9 +4,10 @@ public class MoneyHandler {
 
     private double coinValue = 0;
     private double totalAmountDeposited = 0;
-
-
     private double coinReturnAmount;
+    private double moneyInMachine = 5.00;
+
+    private ItemHandler itemHandler = new ItemHandler();
 
 
 
@@ -40,6 +41,14 @@ public class MoneyHandler {
 
     public void incrementCoinReturnAmountByTotalDeposited() {
         this.coinReturnAmount += this.getTotalAmountDeposited();
+    }
+
+    public void setMoneyInMachine(double moneyInMachine) {
+        this.moneyInMachine = moneyInMachine;
+    }
+
+    public boolean enoughMoneyInMachineForChange() {
+        return moneyInMachine < this.itemHandler.getChipsPrice() || moneyInMachine < this.itemHandler.getColaPrice() || moneyInMachine < this.itemHandler.getCandyPrice();
     }
 
 }

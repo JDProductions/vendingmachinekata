@@ -15,7 +15,6 @@ public class VendingMachine {
 
     private String stateMessage = Constants.INSERT_COIN;
 
-    private double moneyInMachine = 5.00;
 
     private ButtonHandler btnHandler = new ButtonHandler();
     private ItemHandler itemHandler = new ItemHandler();
@@ -151,21 +150,13 @@ public class VendingMachine {
             return this.stateMessage;
         } else if (this.btnHandler.wasReturnButtonPressed()) {
             return this.stateMessage;
-        } else if (this.enoughMoneyInMachineForChange()) {
+        } else if (this.moneyHandler.enoughMoneyInMachineForChange()) {
             this.setStateMessage(Constants.EXACT_CHANGE);
             return this.stateMessage;
         } else if (this.moneyHandler.getTotalAmountDeposited() > 0) {
             return this.convertDoubleToString(this.moneyHandler.getTotalAmountDeposited());
         }
         return this.stateMessage;
-    }
-
-    public void setMoneyInMachine(double moneyInMachine) {
-        this.moneyInMachine = moneyInMachine;
-    }
-
-    private boolean enoughMoneyInMachineForChange() {
-        return moneyInMachine < this.itemHandler.getChipsPrice() || moneyInMachine < this.itemHandler.getColaPrice() || moneyInMachine < this.itemHandler.getCandyPrice();
     }
 
     public ItemHandler getItemHandler() {
