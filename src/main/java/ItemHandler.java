@@ -1,5 +1,4 @@
 public class ItemHandler {
-    private  Helper helper = new Helper();
     private ButtonHandler btnHandler;
     private DisplayHandler display;
     private MoneyHandler moneyHandler;
@@ -101,7 +100,7 @@ public class ItemHandler {
             this.display.setStateMessage(Constants.SOLD_OUT);
             this.btnHandler.incrementButtonCounter();
         } else {
-            this.display.setStateMessage(this.helper.convertDoubleToString(this.moneyHandler.getTotalAmountDeposited()));
+            this.display.setStateMessage(Helper.convertDoubleToString(this.moneyHandler.getTotalAmountDeposited()));
             this.btnHandler.resetButtonCounter();
         }
         return false;

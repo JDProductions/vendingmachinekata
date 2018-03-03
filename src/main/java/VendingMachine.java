@@ -7,6 +7,9 @@ public class VendingMachine {
     private MoneyHandler moneyHandler = new MoneyHandler();
     private DisplayHandler display = new DisplayHandler(this.btnHandler, moneyHandler);
     private ItemHandler itemHandler = new ItemHandler(this.btnHandler, this.display, this.moneyHandler);
+    Helper helper = new Helper(this.moneyHandler, this.display,this.itemHandler);
+
+
 
     public void pressedButton(String item) {
         if (item.equals(Constants.CHIPS)) {
@@ -24,33 +27,22 @@ public class VendingMachine {
             this.display.setStateMessage(Constants.INSERT_COIN);
         }
     }
-
     private void dispense(int itemID) {
         switch (itemID) {
             case ItemHandler.CHIPS_ITEM_ID:
-                completeTransactionAndUpdateDisplay(this.itemHandler.getChipsPrice(), Constants.CHIPS, ItemHandler.CHIPS_ITEM_ID);
+                this.helper.completeTransactionAndUpdateDisplay(this.itemHandler.getChipsPrice(), Constants.CHIPS, ItemHandler.CHIPS_ITEM_ID);
                 break;
 
             case ItemHandler.COLA_ITEM_ID:
-                completeTransactionAndUpdateDisplay(this.itemHandler.getColaPrice(), Constants.COLA, ItemHandler.COLA_ITEM_ID);
+                this.helper.completeTransactionAndUpdateDisplay(this.itemHandler.getColaPrice(), Constants.COLA, ItemHandler.COLA_ITEM_ID);
                 break;
 
             case ItemHandler.CANDY_ITEM_ID:
-                completeTransactionAndUpdateDisplay(this.itemHandler.getCandyPrice(), Constants.CANDY, ItemHandler.CANDY_ITEM_ID);
+                this.helper.completeTransactionAndUpdateDisplay(this.itemHandler.getCandyPrice(), Constants.CANDY, ItemHandler.CANDY_ITEM_ID);
                 break;
 
             default:
                 this.display.setStateMessage(Constants.ERROR);
-        }
-    }
-
-    private void completeTransactionAndUpdateDisplay(double itemPrice, String item, int itemID) {
-        if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(itemPrice)) {
-            display.displayItemPrice(itemPrice);
-        } else if (this.itemHandler.doWeHaveItemInStock(item) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(itemPrice)) {
-            this.itemHandler.reduceItemInventory(itemID);
-            this.moneyHandler.processTransaction(itemPrice);
-            this.display.setStateMessage(Constants.THANK_YOU);
         }
     }
 

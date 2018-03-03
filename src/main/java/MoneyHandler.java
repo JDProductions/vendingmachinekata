@@ -52,11 +52,11 @@ public class MoneyHandler {
         return moneyInMachine < this.itemHandler.getChipsPrice() || moneyInMachine < this.itemHandler.getColaPrice() || moneyInMachine < this.itemHandler.getCandyPrice();
     }
 
-    public boolean isTotalDepositedGreaterThanOrEqualToItemPrice(double itemPrice) {
+    public boolean isTotalDepositedAtleastGreaterThan(double itemPrice) {
         return this.getTotalAmountDeposited() >= itemPrice;
     }
 
-    public boolean isTotalAmountDepositedLessThanItemPrice(double itemPrice) {
+    public boolean isTotalDepositedAtleastLessThan(double itemPrice) {
         return this.getTotalAmountDeposited() < itemPrice;
     }
 
