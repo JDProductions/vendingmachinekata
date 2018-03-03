@@ -11,6 +11,7 @@ public class VendingMachineTest {
     private final ItemHandler itemHandler = this.vendingMachine.getItemHandler();
     private final MoneyHandler moneyHandler = this.vendingMachine.getMoneyHandler();
     private final DisplayHandler display = this.vendingMachine.getDisplay();
+    private final Helper helper = vendingMachine.getHelper();
 
 
     private double DEPOSIT_QUARTER() {
@@ -102,7 +103,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
 
-        this.vendingMachine.pressedButton("Chips");
+        this.helper.pressedButton("Chips");
 
 
         assertEquals("THANK YOU", this.display.getStateMessage());
@@ -114,7 +115,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
 
-        this.vendingMachine.pressedButton("Chips");
+        this.helper.pressedButton("Chips");
 
         // There are 5 bags of chips in stock, I am now expecting 4 bags to be in stock meaning one of the bags has been dispensed.
         assertEquals(4, this.itemHandler.getChipsInStock());
@@ -125,7 +126,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
 
-        this.vendingMachine.pressedButton("Chips");
+        this.helper.pressedButton("Chips");
 
         assertEquals(0.0, this.moneyHandler.getTotalAmountDeposited());
     }
@@ -134,7 +135,7 @@ public class VendingMachineTest {
     public void whenIPressTheChipButtonAndIDontHaveEnoughMoneyDepositedTheDisplayMessageWillReadPRICEAndTheCostOfTheChips() {
         DEPOSIT_QUARTER();
 
-        this.vendingMachine.pressedButton("Chips");
+        this.helper.pressedButton("Chips");
 
         assertEquals("PRICE " + "0.5", this.display.getStateMessage());
 
@@ -147,7 +148,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
 
-        this.vendingMachine.pressedButton("Cola");
+        this.helper.pressedButton("Cola");
 
 
         assertEquals("THANK YOU", this.display.getStateMessage());
@@ -161,7 +162,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
 
-        this.vendingMachine.pressedButton("Cola");
+        this.helper.pressedButton("Cola");
 
         // There are 5 cola's in stock, I am now expecting 4 cola's to be in stock meaning one of the cola's has been dispensed.
         assertEquals(4, this.itemHandler.getColaInStock());
@@ -173,7 +174,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
 
-        this.vendingMachine.pressedButton("Cola");
+        this.helper.pressedButton("Cola");
 
         assertEquals("PRICE " + "1.0", this.display.getStateMessage());
 
@@ -186,7 +187,7 @@ public class VendingMachineTest {
         DEPOSIT_DIME();
         DEPOSIT_NICKEL();
 
-        this.vendingMachine.pressedButton("Candy");
+        this.helper.pressedButton("Candy");
 
 
         assertEquals("THANK YOU", this.display.getStateMessage());
@@ -200,7 +201,7 @@ public class VendingMachineTest {
         DEPOSIT_DIME();
         DEPOSIT_NICKEL();
 
-        this.vendingMachine.pressedButton("Candy");
+        this.helper.pressedButton("Candy");
 
         // There are 5 pieces of candy in stock, I am now expecting 4 pieces of candy to be in stock meaning one of the pieces of candy has been dispensed.
         assertEquals(4, this.itemHandler.getCandyInStock());
@@ -214,7 +215,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
 
-        this.vendingMachine.pressedButton("Candy");
+        this.helper.pressedButton("Candy");
 
         assertEquals("THANK YOU", this.display.getStateMessage());
     }
@@ -224,7 +225,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
 
-        this.vendingMachine.pressedButton("Candy");
+        this.helper.pressedButton("Candy");
 
         assertEquals("PRICE " + "0.65", this.display.getStateMessage());
     }
@@ -237,7 +238,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
 
-        this.vendingMachine.pressedButton("Chips");
+        this.helper.pressedButton("Chips");
 
         assertEquals(.5, this.moneyHandler.getCoinReturnAmount());
     }
@@ -250,7 +251,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
 
-        this.vendingMachine.pressedButton("Chips");
+        this.helper.pressedButton("Chips");
 
         assertEquals("THANK YOU", this.display.getStateMessage());
     }
@@ -263,7 +264,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
 
-        this.vendingMachine.pressedButton("Cola");
+        this.helper.pressedButton("Cola");
 
         assertEquals(.25, this.moneyHandler.getCoinReturnAmount());
     }
@@ -276,7 +277,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
 
-        this.vendingMachine.pressedButton("Cola");
+        this.helper.pressedButton("Cola");
 
         assertEquals("THANK YOU", this.display.getStateMessage());
     }
@@ -288,7 +289,7 @@ public class VendingMachineTest {
         DEPOSIT_DIME();
         DEPOSIT_DIME();
 
-        this.vendingMachine.pressedButton("Candy");
+        this.helper.pressedButton("Candy");
 
         assertEquals(.05, this.moneyHandler.getCoinReturnAmount());
     }
@@ -299,7 +300,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
         DEPOSIT_DIME();
 
-        this.vendingMachine.pressedButton("Return Coin");
+        this.helper.pressedButton("Return Coin");
 
         assertEquals(.6, this.moneyHandler.getCoinReturnAmount());
     }
@@ -309,7 +310,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
         DEPOSIT_QUARTER();
 
-        this.vendingMachine.pressedButton("Return Coin");
+        this.helper.pressedButton("Return Coin");
 
         assertEquals("INSERT COIN", this.display.getStateMessage());
     }
@@ -320,7 +321,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
 
         this.itemHandler.setChipsInStock(0);
-        this.vendingMachine.pressedButton("Chips");
+        this.helper.pressedButton("Chips");
 
         assertEquals("SOLD OUT", this.display.getStateMessage());
     }
@@ -331,8 +332,8 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
 
         this.itemHandler.setChipsInStock(0);
-        this.vendingMachine.pressedButton("Chips");
-        this.vendingMachine.pressedButton("Chips");
+        this.helper.pressedButton("Chips");
+        this.helper.pressedButton("Chips");
 
         assertEquals("0.5", this.display.getStateMessage());
     }
@@ -345,7 +346,7 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
 
         this.itemHandler.setColaInStock(0);
-        this.vendingMachine.pressedButton("Cola");
+        this.helper.pressedButton("Cola");
 
         assertEquals("SOLD OUT", this.display.getStateMessage());
     }
@@ -358,8 +359,8 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
 
         this.itemHandler.setColaInStock(0);
-        this.vendingMachine.pressedButton("Cola");
-        this.vendingMachine.pressedButton("Cola");
+        this.helper.pressedButton("Cola");
+        this.helper.pressedButton("Cola");
 
         assertEquals("1.0", this.display.getStateMessage());
     }
@@ -372,7 +373,7 @@ public class VendingMachineTest {
         DEPOSIT_NICKEL();
 
         this.itemHandler.setCandyInStock(0);
-        this.vendingMachine.pressedButton("Candy");
+        this.helper.pressedButton("Candy");
 
         assertEquals("SOLD OUT", this.display.getStateMessage());
     }
@@ -385,8 +386,8 @@ public class VendingMachineTest {
         DEPOSIT_NICKEL();
 
         this.itemHandler.setCandyInStock(0);
-        this.vendingMachine.pressedButton("Candy");
-        this.vendingMachine.pressedButton("Candy");
+        this.helper.pressedButton("Candy");
+        this.helper.pressedButton("Candy");
 
         assertEquals("0.65", this.display.getStateMessage());
     }
