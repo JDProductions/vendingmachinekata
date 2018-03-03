@@ -1,5 +1,5 @@
 public class Helper {
-    public String convertDoubleToString(double itemPrice) {
+    public static String convertDoubleToString(double itemPrice) {
         return Double.toString(itemPrice);
     }
 }

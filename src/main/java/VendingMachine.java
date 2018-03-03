@@ -8,9 +8,6 @@ public class VendingMachine {
     private DisplayHandler display = new DisplayHandler(this.btnHandler,moneyHandler);
     private ItemHandler itemHandler = new ItemHandler(this.btnHandler,this.display,this.moneyHandler);
 
-    private Helper helper = new Helper();
-
-
     public void pressedButton(String item) {
         if (item.equals(Constants.CHIPS)) {
             this.btnHandler.setWasChipButtonPressed(true);
