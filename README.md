@@ -2,6 +2,44 @@
 
 # How to Setup Project / How to run tests
 
+#Option 1:
+```
+Fast Video Demo on installing Maven and Homebrew 
+    - https://www.youtube.com/watch?v=xTzLGcqUf8k
+1) Now that you have Maven installed 
+    a) Clone the repo
+    b) Navigate to the solution through termnial
+    c) Once you are the directory type "mvn clean install"
+    d) Once the build is successfull scroll up until you see "T E S T S" section
+    e) You should see "Tests run: 33, Failures: 0, Errors: 0, Skipped: 0"
+    IF YOU DONT SEE STEP E RESULTS
+    1) Once the build is successfull type "mvn clean test"
+    2) You should see "Tests run: 33, Failures: 0, Errors: 0, Skipped: 0"
+IF YOU FOLLOWED THE VIDEO INSTRUCTIONS THEN DONT LOOK AT THESE BELOW
+&nbsp;
+&nbsp;
+&nbsp;
+1) Install Homebrew - https://brew.sh/
+    a) Once homebrew is installed open up a new terminal and type "brew doctor" this verifies your brew installation
+2) Install Maven installation
+    a) Assuming brew is installed correctly type "brew install maven"
+    b) Type "mvn -version" to verify that maven has installed correctly
+3) Clone the Repo
+4) Run the tests
+    b) Navigate to the solution through termnial
+    c) Once you are the directory type "mvn clean install"
+    d) Once the build is successfull scroll up until you see "T E S T S" section
+    e) You should see "Tests run: 33, Failures: 0, Errors: 0, Skipped: 0"
+    IF YOU DONT SEE STEP E RESULTS
+    1) Once the build is successfull type "mvn clean test"
+    2) You should see "Tests run: 33, Failures: 0, Errors: 0, Skipped: 0"
+    
+Text incase above video goes down for some reason
+5) Navigate to "VendingMachineTest" class, right click on it and click Run 'VendingMachineTest'
+    - You should see the success message saying "Tests Passed: 33 passed".
+```
+
+#Option 2 IDE:
 ``` 
 1) Ideally, download IntelliJ Idea - it has a free 30-day evaluation phase. All default install settings are fine.
 2) Clone Repo
