@@ -33,4 +33,8 @@ public class DisplayHandler {
         this.stateMessage = stateMessage;
     }
 
+    public void displayItemPrice(double itemPrice) {
+        this.setStateMessage(Constants.PRICE + this.helper.convertDoubleToString(itemPrice));
+    }
+
 }

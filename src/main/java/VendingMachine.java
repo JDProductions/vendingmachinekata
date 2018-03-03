@@ -49,20 +49,12 @@ public class VendingMachine {
 
     private void completeTransactionAndUpdateDisplay(double itemPrice, String item, int itemID) {
         if (this.moneyHandler.isTotalAmountDepositedLessThanItemPrice(itemPrice)) {
-            displayItemPrice(itemPrice);
+            display.displayItemPrice(itemPrice);
         } else if (this.itemHandler.doWeHaveItemInStock(item) && this.moneyHandler.isTotalDepositedGreaterThanOrEqualToItemPrice(itemPrice)) {
-            completeTransaction(itemID, itemPrice);
+            this.itemHandler.reduceItemInventory(itemID);
+            this.moneyHandler.processTransaction(itemPrice);
+            this.display.setStateMessage(Constants.THANK_YOU);
         }
-    }
-
-    private void displayItemPrice(double itemPrice) {
-        this.display.setStateMessage(Constants.PRICE + this.helper.convertDoubleToString(itemPrice));
-    }
-
-    private void completeTransaction(int itemID, double itemPrice) {
-        this.itemHandler.reduceItemInventory(itemID);
-        this.moneyHandler.processTransaction(itemPrice);
-        this.display.setStateMessage(Constants.THANK_YOU);
     }
 
     public ItemHandler getItemHandler() {
