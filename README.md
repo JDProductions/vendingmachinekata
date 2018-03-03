@@ -15,10 +15,7 @@ Fast Video Demo on installing Maven and Homebrew
     IF YOU DONT SEE STEP E RESULTS
     1) Once the build is successfull type "mvn clean test"
     2) You should see "Tests run: 33, Failures: 0, Errors: 0, Skipped: 0"
-IF YOU FOLLOWED THE VIDEO INSTRUCTIONS THEN DONT LOOK AT THESE BELOW
-&nbsp;
-&nbsp;
-&nbsp;
+IF YOU FOLLOWED THE VIDEO INSTRUCTIONS THEN DONT LOOK AT THESE BELOW - TEXT VERSION LISTED BELOW
 1) Install Homebrew - https://brew.sh/
     a) Once homebrew is installed open up a new terminal and type "brew doctor" this verifies your brew installation
 2) Install Maven installation
@@ -26,17 +23,13 @@ IF YOU FOLLOWED THE VIDEO INSTRUCTIONS THEN DONT LOOK AT THESE BELOW
     b) Type "mvn -version" to verify that maven has installed correctly
 3) Clone the Repo
 4) Run the tests
-    b) Navigate to the solution through termnial
-    c) Once you are the directory type "mvn clean install"
-    d) Once the build is successfull scroll up until you see "T E S T S" section
-    e) You should see "Tests run: 33, Failures: 0, Errors: 0, Skipped: 0"
-    IF YOU DONT SEE STEP E RESULTS
+    a) Navigate to the solution through termnial
+    b) Once you are the directory type "mvn clean install"
+    c) Once the build is successfull scroll up until you see "T E S T S" section
+    d) You should see "Tests run: 33, Failures: 0, Errors: 0, Skipped: 0"
+    IF YOU DONT SEE STEP D RESULTS
     1) Once the build is successfull type "mvn clean test"
     2) You should see "Tests run: 33, Failures: 0, Errors: 0, Skipped: 0"
-    
-Text incase above video goes down for some reason
-5) Navigate to "VendingMachineTest" class, right click on it and click Run 'VendingMachineTest'
-    - You should see the success message saying "Tests Passed: 33 passed".
 ```
 
 #Option 2 IDE:
