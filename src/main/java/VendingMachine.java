@@ -5,8 +5,8 @@
 public class VendingMachine {
     private ButtonHandler btnHandler = new ButtonHandler();
     private MoneyHandler moneyHandler = new MoneyHandler();
-    private DisplayHandler display = new DisplayHandler(this.btnHandler,moneyHandler);
-    private ItemHandler itemHandler = new ItemHandler(this.btnHandler,this.display,this.moneyHandler);
+    private DisplayHandler display = new DisplayHandler(this.btnHandler, moneyHandler);
+    private ItemHandler itemHandler = new ItemHandler(this.btnHandler, this.display, this.moneyHandler);
 
     public void pressedButton(String item) {
         if (item.equals(Constants.CHIPS)) {
