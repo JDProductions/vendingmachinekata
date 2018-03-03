@@ -1,7 +1,16 @@
 public class ItemHandler {
+    public static final int CHIPS_ITEM_ID = 1;
+    public static final int COLA_ITEM_ID = 2;
+    public static final int CANDY_ITEM_ID = 3;
+    private final double colaPrice = 1.00;
+    private final double candyPrice = 0.65;
     private ButtonHandler btnHandler;
     private DisplayHandler display;
     private MoneyHandler moneyHandler;
+    private double chipsPrice = 0.50;
+    private int chipsInStock = 5;
+    private int colaInStock = 5;
+    private int candyInStock = 5;
 
     public ItemHandler(ButtonHandler btnHandler, DisplayHandler display, MoneyHandler moneyHandler) {
         this.btnHandler = btnHandler;
@@ -13,22 +22,9 @@ public class ItemHandler {
 
     }
 
-    public static final int CHIPS_ITEM_ID = 1;
-    public static final int COLA_ITEM_ID = 2;
-    public static final int CANDY_ITEM_ID = 3;
-
-    private double chipsPrice = 0.50;
-    private int chipsInStock = 5;
-
-
-    private final double colaPrice = 1.00;
-    private int colaInStock = 5;
-
     public double getCandyPrice() {
         return candyPrice;
     }
-
-    private final double candyPrice = 0.65;
 
     public int getCandyInStock() {
         return candyInStock;
@@ -37,9 +33,6 @@ public class ItemHandler {
     public void setCandyInStock(int candyInStock) {
         this.candyInStock = candyInStock;
     }
-
-    private int candyInStock = 5;
-
 
     public double getColaPrice() {
         return colaPrice;
@@ -60,7 +53,7 @@ public class ItemHandler {
     }
 
 
-    public  void reduceItemInventory(int itemID){
+    public void reduceItemInventory(int itemID) {
         switch (itemID) {
             case 1:
                 this.chipsInStock -= 1;
@@ -80,7 +73,6 @@ public class ItemHandler {
     public void setChipsInStock(int chipsInStock) {
         this.chipsInStock = chipsInStock;
     }
-
 
     public boolean doWeHaveItemInStock(String itemName) {
         if (itemName.equals(Constants.CHIPS)) {

@@ -2,8 +2,8 @@ public class ButtonHandler {
     private boolean wasChipButtonPressed = false;
     private boolean wasColaButtonPressed = false;
     private boolean wasCandyButtonPressed = false;
-
     private boolean wasReturnButtonPressed = false;
+
     private int soldOutButtonCounter = 0;
 
     public boolean wasChipButtonPressed() {

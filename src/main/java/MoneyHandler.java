@@ -9,15 +9,12 @@ public class MoneyHandler {
 
     private ItemHandler itemHandler = new ItemHandler();
 
-
-
+    public double getCoinValue() {
+        return coinValue;
+    }
 
     void setCoinValue(double coinValue) {
         this.coinValue = coinValue;
-    }
-
-    public double getCoinValue() {
-        return coinValue;
     }
 
     public double getCoinReturnAmount() {
@@ -64,7 +61,6 @@ public class MoneyHandler {
         this.makeChange(itemPrice);
         this.incrementCoinReturnAmountByTotalDeposited();
     }
-
 
     public double determineCoinValueBasedOnWeightAndSizeByDiameter(int weight, int diameter) {
         if (weight == Constants.ONE_GRAM && diameter == Constants.ONE_MILLIMETER) {

@@ -4,11 +4,15 @@ public class Helper {
     private ItemHandler itemHandler;
     private ButtonHandler btnHandler;
 
-    public Helper(MoneyHandler moneyHandler, DisplayHandler display, ItemHandler itemHandler,ButtonHandler btnHandler) {
+    public Helper(MoneyHandler moneyHandler, DisplayHandler display, ItemHandler itemHandler, ButtonHandler btnHandler) {
         this.moneyHandler = moneyHandler;
         this.display = display;
         this.itemHandler = itemHandler;
         this.btnHandler = btnHandler;
+    }
+
+    public static String convertDoubleToString(double itemPrice) {
+        return Double.toString(itemPrice);
     }
 
     public void pressedButton(String item) {
@@ -56,9 +60,5 @@ public class Helper {
             this.moneyHandler.processTransaction(itemPrice);
             this.display.setStateMessage(Constants.THANK_YOU);
         }
-    }
-
-    public static String convertDoubleToString(double itemPrice) {
-        return Double.toString(itemPrice);
     }
 }

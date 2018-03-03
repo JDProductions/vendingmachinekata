@@ -5,9 +5,9 @@
 public class VendingMachine {
     private ButtonHandler btnHandler = new ButtonHandler();
     private MoneyHandler moneyHandler = new MoneyHandler();
-    private DisplayHandler display = new DisplayHandler(this.btnHandler, moneyHandler);
+    private DisplayHandler display = new DisplayHandler(this.btnHandler, this.moneyHandler);
     private ItemHandler itemHandler = new ItemHandler(this.btnHandler, this.display, this.moneyHandler);
-    private Helper helper = new Helper(this.moneyHandler,this.display,this.itemHandler,this.btnHandler);
+    private Helper helper = new Helper(this.moneyHandler, this.display, this.itemHandler, this.btnHandler);
 
 
     public ItemHandler getItemHandler() {
