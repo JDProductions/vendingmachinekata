@@ -2,7 +2,7 @@
 
 # How to Setup Project / How to run tests
 
-#Option 1:
+#Option 1 Terminal:
 ```
 Fast Video Demo on installing Maven and Homebrew 
     - https://www.youtube.com/watch?v=xTzLGcqUf8k
