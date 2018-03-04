@@ -37,7 +37,7 @@ public class ButtonHandler {
     }
 
     public boolean wasReturnButtonPressed() {
-        return wasReturnButtonPressed;
+        return this.wasReturnButtonPressed;
     }
 
     public void setWasReturnButtonPressed(boolean wasReturnButtonPressed) {
