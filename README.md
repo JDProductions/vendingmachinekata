@@ -1,39 +1,32 @@
 # VendingMachineKata
 
+# Requirements
+
+- Maven
+
+### Using Homebrew:
+```
+If you do not have homebrew, run this command to install homebrew:
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+### Setup Maven
+```
+type "brew install maven"
+```
+
+
 # How to Setup Project / How to run tests
 
 #Option 1 Terminal:
+## Running Tests
 ```
-Fast Video Demo on installing Maven and Homebrew 
-    - https://www.youtube.com/watch?v=xTzLGcqUf8k
-1) Now that you have Maven installed 
     a) Clone the repo
     b) Navigate to the solution through the terminal
     c) Once you are in the project the directory type "mvn clean install"
     d) Once the build is successful scroll up until you see "T E S T S" section
     e) You should see "Tests run: 33, Failures: 0, Errors: 0, Skipped: 0"
     f) To run the tests again type "mvn clean test"
-    IF YOU DONT SEE STEP E RESULTS
-    1) Once the build is successful type "mvn clean test"
-    2) You should see "Tests run: 33, Failures: 0, Errors: 0, Skipped: 0"
-IF YOU FOLLOWED THE VIDEO INSTRUCTIONS THEN DONT LOOK AT THESE BELOW - TEXT VERSION LISTED BELOW
-1) Install Homebrew - https://brew.sh/
-    a) Once homebrew is installed open up a new terminal and type "brew doctor" this verifies your brew installation
-    - As long as you don't have failures you're good to go, warnings are okay
-2) Install Maven
-    a) Assuming brew is installed correctly type "brew install maven"
-    b) Type "mvn -version" to verify that maven has installed correctly - might need to restart terminal
-3) Clone the Repo
-4) Run the tests
-    a) Navigate to the solution through the terminal
-    b) Once you are the project directory type "mvn clean install"
-    c) Once the build is successful scroll up until you see "T E S T S" section
-    d) You should see "Tests run: 33, Failures: 0, Errors: 0, Skipped: 0"
-    e) To run the tests again type "mvn clean test"
-    IF YOU DONT SEE STEP D RESULTS
-    1) Once the build is successful type "mvn clean test"
-    2) You should see "Tests run: 33, Failures: 0, Errors: 0, Skipped: 0"
- 
 ```
 
 #Option 2 IDE:
