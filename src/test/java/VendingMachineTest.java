@@ -18,7 +18,6 @@ public class VendingMachineTest {
     private final DisplayHandler display = this.vendingMachine.getDisplay();
     private final Helper helper = vendingMachine.getHelper();
 
-
     private double DEPOSIT_QUARTER() {
         return this.moneyHandler.determineCoinValueBasedOnWeightAndSizeByDiameter(1, 1);
     }
