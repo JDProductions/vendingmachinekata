@@ -4,6 +4,7 @@
 package components;
 
 public class ButtonHandler {
+
     private boolean wasChipButtonPressed = false;
     private boolean wasColaButtonPressed = false;
     private boolean wasCandyButtonPressed = false;

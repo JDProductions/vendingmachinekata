@@ -7,14 +7,18 @@ import helpers.Helper;
 import helpers.Constants;
 
 public class ItemHandler {
+
     public static final int CHIPS_ITEM_ID = 1;
     public static final int COLA_ITEM_ID = 2;
     public static final int CANDY_ITEM_ID = 3;
+
     private final double colaPrice = 1.00;
     private final double candyPrice = 0.65;
+
     private ButtonHandler btnHandler;
     private DisplayHandler display;
     private MoneyHandler moneyHandler;
+
     private double chipsPrice = 0.50;
     private int chipsInStock = 5;
     private int colaInStock = 5;
@@ -61,19 +65,6 @@ public class ItemHandler {
     }
 
 
-    public void reduceItemInventory(int itemID) {
-        switch (itemID) {
-            case 1:
-                this.chipsInStock -= 1;
-                break;
-            case 2:
-                this.colaInStock -= 1;
-                break;
-            case 3:
-                this.candyInStock -= 1;
-        }
-    }
-
     public int getChipsInStock() {
         return this.chipsInStock;
     }
@@ -104,6 +95,19 @@ public class ItemHandler {
             this.btnHandler.resetButtonCounter();
         }
         return false;
+    }
+
+    public void reduceItemInventory(int itemID) {
+        switch (itemID) {
+            case 1:
+                this.chipsInStock -= 1;
+                break;
+            case 2:
+                this.colaInStock -= 1;
+                break;
+            case 3:
+                this.candyInStock -= 1;
+        }
     }
 
 }

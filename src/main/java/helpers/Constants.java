@@ -4,6 +4,7 @@
 package helpers;
 
 public class Constants {
+
     public final static String CHIPS = "Chips";
     public final static String COLA = "Cola";
     public final static String CANDY = "Candy";

@@ -1,5 +1,6 @@
 //  Created by James DuBois on 2/21/18.
 //  Copyright © 2018 VendingMachineKata. All rights reserved.
+
 package main;
 
 import components.ButtonHandler;
@@ -9,6 +10,7 @@ import components.MoneyHandler;
 import helpers.Helper;
 
 public class VendingMachine {
+
     private ButtonHandler btnHandler = new ButtonHandler();
     private MoneyHandler moneyHandler = new MoneyHandler();
     private DisplayHandler display = new DisplayHandler(this.btnHandler, this.moneyHandler);

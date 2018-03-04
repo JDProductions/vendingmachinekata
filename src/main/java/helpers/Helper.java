@@ -9,6 +9,7 @@ import components.ItemHandler;
 import components.MoneyHandler;
 
 public class Helper {
+
     private MoneyHandler moneyHandler;
     private DisplayHandler display;
     private ItemHandler itemHandler;
