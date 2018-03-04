@@ -107,6 +107,10 @@ public class ItemHandler {
                 break;
             case 3:
                 this.candyInStock -= 1;
+                break;
+
+                default:
+                    this.display.setStateMessage(Constants.ERROR);
         }
     }
 
