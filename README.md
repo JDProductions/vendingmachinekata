@@ -18,7 +18,7 @@ Fast Video Demo on installing Maven and Homebrew
 IF YOU FOLLOWED THE VIDEO INSTRUCTIONS THEN DONT LOOK AT THESE BELOW - TEXT VERSION LISTED BELOW
 1) Install Homebrew - https://brew.sh/
     a) Once homebrew is installed open up a new terminal and type "brew doctor" this verifies your brew installation
-2) Install Maven installation
+2) Install Maven
     a) Assuming brew is installed correctly type "brew install maven"
     b) Type "mvn -version" to verify that maven has installed correctly
 3) Clone the Repo
