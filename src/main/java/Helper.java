@@ -54,7 +54,7 @@ public class Helper {
 
     private void completeTransactionAndUpdateDisplay(double itemPrice, String item, int itemID) {
         if (this.moneyHandler.isTotalDepositedAtleastLessThan(itemPrice)) {
-            display.displayItemPrice(itemPrice);
+            this.display.displayItemPrice(itemPrice);
         } else if (this.itemHandler.doWeHaveItemInStock(item) && this.moneyHandler.isTotalDepositedAtleastGreaterThan(itemPrice)) {
             this.itemHandler.reduceItemInventory(itemID);
             this.moneyHandler.processTransaction(itemPrice);

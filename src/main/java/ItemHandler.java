@@ -23,11 +23,11 @@ public class ItemHandler {
     }
 
     public double getCandyPrice() {
-        return candyPrice;
+        return this.candyPrice;
     }
 
     public int getCandyInStock() {
-        return candyInStock;
+        return this.candyInStock;
     }
 
     public void setCandyInStock(int candyInStock) {
@@ -35,12 +35,12 @@ public class ItemHandler {
     }
 
     public double getColaPrice() {
-        return colaPrice;
+        return this.colaPrice;
     }
 
 
     public int getColaInStock() {
-        return colaInStock;
+        return this.colaInStock;
     }
 
     public void setColaInStock(int colaInStock) {
@@ -49,7 +49,7 @@ public class ItemHandler {
 
 
     public double getChipsPrice() {
-        return chipsPrice;
+        return this.chipsPrice;
     }
 
 
@@ -67,7 +67,7 @@ public class ItemHandler {
     }
 
     public int getChipsInStock() {
-        return chipsInStock;
+        return this.chipsInStock;
     }
 
     public void setChipsInStock(int chipsInStock) {

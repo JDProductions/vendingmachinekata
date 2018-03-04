@@ -9,7 +9,6 @@ public class VendingMachine {
     private ItemHandler itemHandler = new ItemHandler(this.btnHandler, this.display, this.moneyHandler);
     private Helper helper = new Helper(this.moneyHandler, this.display, this.itemHandler, this.btnHandler);
 
-
     public ItemHandler getItemHandler() {
         return itemHandler;
     }

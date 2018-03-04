@@ -10,7 +10,7 @@ public class MoneyHandler {
     private ItemHandler itemHandler = new ItemHandler();
 
     public double getCoinValue() {
-        return coinValue;
+        return this.coinValue;
     }
 
     void setCoinValue(double coinValue) {
@@ -18,11 +18,11 @@ public class MoneyHandler {
     }
 
     public double getCoinReturnAmount() {
-        return coinReturnAmount;
+        return this.coinReturnAmount;
     }
 
     public double getTotalAmountDeposited() {
-        return totalAmountDeposited;
+        return this.totalAmountDeposited;
     }
 
     public void incrementTotalAmountDepositedByCoinValue() {
@@ -46,7 +46,7 @@ public class MoneyHandler {
     }
 
     public boolean enoughMoneyInMachineForChange() {
-        return moneyInMachine < this.itemHandler.getChipsPrice() || moneyInMachine < this.itemHandler.getColaPrice() || moneyInMachine < this.itemHandler.getCandyPrice();
+        return this.moneyInMachine < this.itemHandler.getChipsPrice() || this.moneyInMachine < this.itemHandler.getColaPrice() || this.moneyInMachine < this.itemHandler.getCandyPrice();
     }
 
     public boolean isTotalDepositedAtleastGreaterThan(double itemPrice) {
