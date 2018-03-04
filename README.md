@@ -6,13 +6,13 @@
 
 ### Using Homebrew:
 ```
-If you do not have homebrew, run this command to install homebrew:
+If you do not have homebrew, run this command in the terminal to install homebrew which can be found on Homebrew's front page:
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
 ### Setup Maven
 ```
-type "brew install maven"
+type "brew install maven" in the terminal
 ```
 
 
