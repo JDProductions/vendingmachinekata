@@ -74,7 +74,6 @@ public class VendingMachineTest {
     @Test
     public void whenIInsertAPennyTheCoinReturnShouldReturnTheValueOfAPennyWhichWasInserted() {
         DEPOSIT_PENNY();
-        this.moneyHandler.getCoinReturnAmount();
 
         assertEquals(0.01, this.moneyHandler.getCoinReturnAmount());
     }
@@ -95,7 +94,6 @@ public class VendingMachineTest {
         DEPOSIT_QUARTER();
         DEPOSIT_DIME();
         DEPOSIT_NICKEL();
-        // Notice the penny is not added to the total deposited.
         DEPOSIT_PENNY();
 
 
@@ -122,7 +120,6 @@ public class VendingMachineTest {
 
         this.helper.pressedButton("Chips");
 
-        // There are 5 bags of chips in stock, I am now expecting 4 bags to be in stock meaning one of the bags has been dispensed.
         assertEquals(4, this.itemHandler.getChipsInStock());
     }
 
@@ -169,7 +166,6 @@ public class VendingMachineTest {
 
         this.helper.pressedButton("Cola");
 
-        // There are 5 cola's in stock, I am now expecting 4 cola's to be in stock meaning one of the cola's has been dispensed.
         assertEquals(4, this.itemHandler.getColaInStock());
     }
 
@@ -208,7 +204,6 @@ public class VendingMachineTest {
 
         this.helper.pressedButton("Candy");
 
-        // There are 5 pieces of candy in stock, I am now expecting 4 pieces of candy to be in stock meaning one of the pieces of candy has been dispensed.
         assertEquals(4, this.itemHandler.getCandyInStock());
     }
 
