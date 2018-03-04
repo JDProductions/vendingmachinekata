@@ -1,5 +1,7 @@
-package helpers;//  Created by James DuBois on 2/21/18.
+//  Created by James DuBois on 2/21/18.
 //  Copyright © 2018 VendingMachineKata. All rights reserved.
+
+package helpers;
 
 public class Constants {
     public final static String CHIPS = "Chips";
