@@ -12,6 +12,7 @@ Fast Video Demo on installing Maven and Homebrew
     c) Once you are in the project the directory type "mvn clean install"
     d) Once the build is successful scroll up until you see "T E S T S" section
     e) You should see "Tests run: 33, Failures: 0, Errors: 0, Skipped: 0"
+    f) To run the tests again type "mvn clean test"
     IF YOU DONT SEE STEP E RESULTS
     1) Once the build is successful type "mvn clean test"
     2) You should see "Tests run: 33, Failures: 0, Errors: 0, Skipped: 0"
@@ -28,6 +29,7 @@ IF YOU FOLLOWED THE VIDEO INSTRUCTIONS THEN DONT LOOK AT THESE BELOW - TEXT VERS
     b) Once you are the project directory type "mvn clean install"
     c) Once the build is successful scroll up until you see "T E S T S" section
     d) You should see "Tests run: 33, Failures: 0, Errors: 0, Skipped: 0"
+    e) To run the tests again type "mvn clean test"
     IF YOU DONT SEE STEP D RESULTS
     1) Once the build is successful type "mvn clean test"
     2) You should see "Tests run: 33, Failures: 0, Errors: 0, Skipped: 0"
