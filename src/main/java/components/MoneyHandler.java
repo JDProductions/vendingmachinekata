@@ -16,11 +16,11 @@ public class MoneyHandler {
 
     private ItemHandler itemHandler = new ItemHandler();
 
-    public double getCoinValue() {
+    private double getCoinValue() {
         return this.coinValue;
     }
 
-    void setCoinValue(double coinValue) {
+    private void setCoinValue(double coinValue) {
         this.coinValue = coinValue;
     }
 
@@ -32,15 +32,15 @@ public class MoneyHandler {
         return this.totalAmountDeposited;
     }
 
-    public void incrementTotalAmountDepositedByCoinValue() {
+    private void incrementTotalAmountDepositedByCoinValue() {
         this.totalAmountDeposited += this.getCoinValue();
     }
 
-    public void makeChange(double itemPrice) {
+    private void makeChange(double itemPrice) {
         this.totalAmountDeposited = BigDecimal.valueOf(this.getTotalAmountDeposited()).subtract(BigDecimal.valueOf(itemPrice)).doubleValue();
     }
 
-    public void incrementCoinReturnAmountByCoinValue() {
+    private void incrementCoinReturnAmountByCoinValue() {
         this.coinReturnAmount += this.getCoinValue();
     }
 

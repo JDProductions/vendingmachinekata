@@ -47,7 +47,7 @@ public class ButtonHandler {
         return this.soldOutButtonCounter;
     }
 
-    public void setSoldOutButtonCounter(int soldOutButtonCounter) {
+    private void setSoldOutButtonCounter(int soldOutButtonCounter) {
         this.soldOutButtonCounter = soldOutButtonCounter;
     }
 

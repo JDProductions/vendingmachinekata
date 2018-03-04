@@ -93,7 +93,7 @@ public class ItemHandler {
         return false;
     }
 
-    public boolean evaluateIfItemIsSoldOut(boolean b) {
+    private boolean evaluateIfItemIsSoldOut(boolean b) {
         if (b) {
             return true;
         } else if (this.btnHandler.getSoldOutButtonCounter() == 0) {
