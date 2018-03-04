@@ -13,7 +13,7 @@ public class ButtonHandler {
     private int soldOutButtonCounter = 0;
 
     public boolean wasChipButtonPressed() {
-        return wasChipButtonPressed;
+        return this.wasChipButtonPressed;
     }
 
     public void setWasChipButtonPressed(boolean wasChipButtonPressed) {
@@ -21,7 +21,7 @@ public class ButtonHandler {
     }
 
     public boolean wasColaButtonPressed() {
-        return wasColaButtonPressed;
+        return this.wasColaButtonPressed;
     }
 
     public void setWasColaButtonPressed(boolean wasColaButtonPressed) {
@@ -29,7 +29,7 @@ public class ButtonHandler {
     }
 
     public boolean wasCandyButtonPressed() {
-        return wasCandyButtonPressed;
+        return this.wasCandyButtonPressed;
     }
 
     public void setWasCandyButtonPressed(boolean wasCandyButtonPressed) {
