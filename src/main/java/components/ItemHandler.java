@@ -1,3 +1,8 @@
+package components;
+
+import helpers.Helper;
+import helpers.Constants;
+
 public class ItemHandler {
     public static final int CHIPS_ITEM_ID = 1;
     public static final int COLA_ITEM_ID = 2;

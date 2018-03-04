@@ -1,3 +1,8 @@
+package components;
+
+import helpers.Helper;
+import helpers.Constants;
+
 public class DisplayHandler {
 
     private String stateMessage = Constants.INSERT_COIN;

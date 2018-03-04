@@ -1,3 +1,10 @@
+package helpers;
+
+import components.ButtonHandler;
+import components.DisplayHandler;
+import components.ItemHandler;
+import components.MoneyHandler;
+
 public class Helper {
     private MoneyHandler moneyHandler;
     private DisplayHandler display;

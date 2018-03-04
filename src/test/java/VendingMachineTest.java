@@ -1,6 +1,11 @@
 //  Created by James DuBois on 2/21/18.
 //  Copyright © 2018 VendingMachineKata. All rights reserved.
 
+import components.DisplayHandler;
+import components.ItemHandler;
+import components.MoneyHandler;
+import helpers.Helper;
+import main.VendingMachine;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;

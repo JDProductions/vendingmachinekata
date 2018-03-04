@@ -1,3 +1,7 @@
+package components;
+
+import helpers.Constants;
+
 import java.math.BigDecimal;
 
 public class MoneyHandler {
