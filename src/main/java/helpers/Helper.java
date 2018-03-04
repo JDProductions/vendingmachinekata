@@ -1,3 +1,6 @@
+//  Created by James DuBois on 2/21/18.
+//  Copyright © 2018 VendingMachineKata. All rights reserved.
+
 package helpers;
 
 import components.ButtonHandler;
