@@ -18,7 +18,7 @@ type "brew install maven" in the terminal
 
 # How to Setup Project / How to run tests
 
-#Option 1 Terminal:
+#Option 1 Terminal: Recommended Way
 ## Running Tests
 ```
     a) Clone the repo
@@ -29,7 +29,7 @@ type "brew install maven" in the terminal
     f) To run the tests again type "mvn clean test"
 ```
 
-#Option 2 IDE:
+#Option 2 IDE: Not Recommended
 ``` 
 1) Ideally, download IntelliJ Idea - it has a free 30-day evaluation phase. All default install settings are fine.
 2) Clone Repo
@@ -37,6 +37,7 @@ type "brew install maven" in the terminal
 4) Open the project in IntelliJ
     - Once the project is opened, IntelliJ should do all the work.
     - If that is not the case, there should be a message that pops up at the bottom of the screen. saying Import Changes or it gives you the option Enable Auto Import, either will work.
+    - There could also be a button in bottom right of IDE that will  say "Add As Maven Prject" that will do the trick as well.
     - Give IntelliJ some time to load/index and pull in dependencies, it really depends on how fast your pc setup is.
 5) Navigate to "VendingMachineTest" class, right click on it and click Run 'VendingMachineTest'
     - You should see the success message saying "Tests Passed: 33 passed".
