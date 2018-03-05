@@ -34,7 +34,7 @@ type "brew install maven" in the terminal
 1) Ideally, download IntelliJ Idea - it has a free 30-day evaluation phase. All default install settings are fine.
 2) Clone Repo
 3) Configure Your JDK if you haven't for IntelliJ, in this project I used JDK 9 but I think any recent JDK should be fine.
-4) Open the project in IntelliJ
+4) Import the project in IntelliJ as Maven Project
     - Once the project is opened, IntelliJ should do all the work.
     - If that is not the case, there should be a message that pops up at the bottom of the screen. saying Import Changes or it gives you the option Enable Auto Import, either will work.
     - There could also be a button in bottom right of IDE that will  say "Add As Maven Prject" that will do the trick as well.
