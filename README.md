@@ -23,7 +23,7 @@ type "brew install maven" in the terminal
 ```
     a) Clone the repo
     b) Navigate to the solution through the terminal
-    c) Once you are in the project the directory type "mvn clean install"
+    c) Once you're in the project directory type "mvn clean install"
     d) Once the build is successful scroll up until you see "T E S T S" section
     e) You should see "Tests run: 33, Failures: 0, Errors: 0, Skipped: 0"
     f) To run the tests again type "mvn clean test"
